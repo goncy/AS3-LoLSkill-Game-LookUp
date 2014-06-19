@@ -57,7 +57,7 @@
 			arrayDiv = texto.split(parserDiv);
 			arrayWins = texto.split(parserWins);
 			arrayPm = texto.split(parserPm);
-			arrayPerc = parseSkill(texto);
+//			arrayPerc = parseSkill(texto);
 			arrayMap = texto.split(parserMap);
 
 			MapString = arrayMap[1];

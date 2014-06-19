@@ -3,6 +3,7 @@
 
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import flash.events.FocusEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.events.ProgressEvent;
@@ -38,11 +39,11 @@
 
 		//Variables RegExp
 		public var parserNombre:RegExp = new RegExp('<div class="summonername"><a href=".*?">(.*?)<\/a>',"s");
-		public var parserSkill:RegExp = new RegExp('<div class="skillscore tiptip" title=".*?<b>(.*?)<\/b>',"s");
-		public var parserChamp:RegExp = new RegExp('<a class="tiptip" href="champion.*?url\\((.*?)\\)"',"s");
-		public var parserDiv:RegExp = new RegExp('<div class="rankCurrent tiptip" title=".*?<b>(.*?)[">|<\/b]',"s");
-		public var parserWins:RegExp = new RegExp('<div class="wins tiptip" title=".*?">(.*?)<\/div>',"s");
-		public var parserPm:RegExp = new RegExp('<div class="premade tiptip".*?src="(.*?)"',"s");
+		public var parserSkill:RegExp = new RegExp('<div class="skillscore tooltip" title=".*?<b>(.*?)<\/b>',"s");
+		public var parserChamp:RegExp = new RegExp('<div class="img" style="background:url\\((.*?)\\)"><\/div>',"s");
+		public var parserDiv:RegExp = new RegExp('<div class="rankCurrent tooltip" title=".*?<b>(.*?)[">|<\/b]',"s");
+		public var parserWins:RegExp = new RegExp('<div class="wins tooltip" title=".*?">(.*?)<\/div>',"s");
+		public var parserPm:RegExp = new RegExp('<div class="premade tooltptip".*?src="(.*?)"',"s");
 		public var parserMap:RegExp = new RegExp('<div class="map">(.*?)</div>',"s");
 
 		public function Main()

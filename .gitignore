@@ -3,3 +3,5 @@ bin/lolskill-app.xml
 *.png
 *.jpg
 *.swf
+*.exe
+*.xml

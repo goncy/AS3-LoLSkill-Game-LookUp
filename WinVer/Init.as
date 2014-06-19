@@ -3,7 +3,7 @@ stop();
 animarFrame();
 
 //Summoner
-var nombre:String = amoamigirlfriend;
+var nombre:String;
 var region:String = "LAS";
 
 //Mensajes
@@ -22,10 +22,11 @@ removeChild(container_mc);
 container_mc.alpha = 0;
 
 //Listeners
-buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
 textloader.addEventListener(ProgressEvent.PROGRESS, deshabilitarBoton);
 textloader.addEventListener(Event.COMPLETE, agregar);
 donar.addEventListener(MouseEvent.CLICK, donarframe);
+buscador.sumname.addEventListener(FocusEvent.FOCUS_IN, glowin);
+buscador.sumname.addEventListener(FocusEvent.FOCUS_OUT, glowout);
 
 //Funcion Donar
 function donarframe(MouseEvent):void
