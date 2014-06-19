@@ -6,3 +6,4 @@ bin/lolskill-app.xml
 *.exe
 *.xml
 *.xml
+WinVer/bin/lolskill-winver-app.xml
