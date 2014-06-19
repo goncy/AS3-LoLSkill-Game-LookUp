@@ -3,7 +3,7 @@ stop();
 animarFrame();
 
 //Summoner
-var nombre:String;
+var nombre:String = amoamigirlfriend;
 var region:String = "LAS";
 
 //Mensajes
