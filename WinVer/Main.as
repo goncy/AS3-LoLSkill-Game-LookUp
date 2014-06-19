@@ -36,15 +36,28 @@
 		public var arrayPm:Array = new Array();
 		public var arrayPerc:Array = new Array();
 		public var arrayMap:Array = new Array();
-
+		//Array Stats
+		public var arrayGames:Array = new Array();
+		public var arrayKills:Array = new Array();
+		public var arrayDeaths:Array = new Array();
+		public var arrayAssists:Array = new Array();
+		public var arrayCs:Array = new Array();
+		public var arrayGold:Array = new Array();
 		//Variables RegExp
 		public var parserNombre:RegExp = new RegExp('<div class="summonername"><a href=".*?">(.*?)<\/a>',"s");
 		public var parserSkill:RegExp = new RegExp('<div class="skillscore tooltip" title=".*?<b>(.*?)<\/b>',"s");
 		public var parserChamp:RegExp = new RegExp('<div class="img" style="background:url\\((.*?)\\)"><\/div>',"s");
 		public var parserDiv:RegExp = new RegExp('<div class="rankCurrent tooltip" title=".*?<b>(.*?)[">|<\/b]',"s");
 		public var parserWins:RegExp = new RegExp('<div class="wins tooltip" title=".*?">(.*?)<\/div>',"s");
-		public var parserPm:RegExp = new RegExp('<div class="premade tooltptip".*?src="(.*?)"',"s");
+		public var parserPm:RegExp = new RegExp('<div class="premade tooltip".*?src="(.*?)"',"s");
 		public var parserMap:RegExp = new RegExp('<div class="map">(.*?)</div>',"s");
+		//RegExp Stats
+		public var parserGames:RegExp = new RegExp('<td>Games:<\/td>\n<td>(.*?)[<\/td>|<span]',"s");
+		public var parserKills:RegExp = new RegExp('<td>Kills:<\/td>\n<td>(.*?)[<\/td>|<span]',"s");
+		public var parserDeaths:RegExp = new RegExp('<td>Deaths:<\/td>\n<td>(.*?)[<\/td>|<span]',"s");
+		public var parserAssists:RegExp = new RegExp('<td>Assists:<\/td>\n<td>(.*?)[<\/td>|<span]',"s");
+		public var parserCs:RegExp = new RegExp('<td>CS:<\/td>\n<td>(.*?)[<\/td>|<span]',"s");
+		public var parserGold:RegExp = new RegExp('<td>Gold:<\/td>\n<td>(.*?)[<\/td>|<span]',"s");
 
 		public function Main()
 		{
@@ -60,6 +73,13 @@
 			arrayPm = texto.split(parserPm);
 			arrayPerc = parseSkill(texto);
 			arrayMap = texto.split(parserMap);
+			//Parse Stats
+			arrayGames = texto.split(parserGames);
+			arrayKills = texto.split(parserKills);
+			arrayDeaths = texto.split(parserDeaths);
+			arrayAssists = texto.split(parserAssists);
+			arrayCs = texto.split(parserCs);
+			arrayGold = texto.split(parserGold);
 
 			MapString = arrayMap[1];
 			MapString = MapString.replace("&middot;","-");
