@@ -36,6 +36,7 @@
 		public var arrayPm:Array = new Array();
 		public var arrayPerc:Array = new Array();
 		public var arrayMap:Array = new Array();
+		public var arrayMasteries:Array = new Array();
 		//Array Stats
 		public var arrayGames:Array = new Array();
 		public var arrayKills:Array = new Array();
@@ -51,6 +52,7 @@
 		public var parserWins:RegExp = new RegExp('<div class="wins tooltip" title=".*?">(.*?)<\/div>',"s");
 		public var parserPm:RegExp = new RegExp('<div class="premade tooltip".*?src="(.*?)"',"s");
 		public var parserMap:RegExp = new RegExp('<div class="map">(.*?)</div>',"s");
+		public var parserMasteries:RegExp = new RegExp('"runes tooltip" title="(.*?)\(click for a detailed breakdown\)"',"s");
 		//RegExp Stats
 		public var parserGames:RegExp = new RegExp('<td>Games:<\/td>\n<td>(.*?)[<\/td>|<span]',"s");
 		public var parserKills:RegExp = new RegExp('<td>Kills:<\/td>\n<td>(.*?)[<\/td>|<span]',"s");
@@ -73,6 +75,7 @@
 			arrayPm = texto.split(parserPm);
 			arrayPerc = parseSkill(texto);
 			arrayMap = texto.split(parserMap);
+			arrayMasteries = texto.split(parserMasteries);
 			//Parse Stats
 			arrayGames = texto.split(parserGames);
 			arrayKills = texto.split(parserKills);
