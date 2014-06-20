@@ -52,7 +52,8 @@
 		public var parserWins:RegExp = new RegExp('<div class="wins tooltip" title=".*?">(.*?)<\/div>',"s");
 		public var parserPm:RegExp = new RegExp('<div class="premade tooltip".*?src="(.*?)"',"s");
 		public var parserMap:RegExp = new RegExp('<div class="map">(.*?)</div>',"s");
-		public var parserMasteries:RegExp = new RegExp('"runes tooltip" title="(.*?)\(click for a detailed breakdown\)"',"s");
+		public var parserMasteries:RegExp = new RegExp('"runes tooltip" title="(.*?)"',"s");
+		public var parseBreakLine:RegExp = new RegExp('(<br \/>)|(\(click for a detailed breakdown\))|[\(\)]',"g");
 		//RegExp Stats
 		public var parserGames:RegExp = new RegExp('<td>Games:<\/td>\n<td>(.*?)[<\/td>|<span]',"s");
 		public var parserKills:RegExp = new RegExp('<td>Kills:<\/td>\n<td>(.*?)[<\/td>|<span]',"s");
@@ -68,14 +69,13 @@
 
 		function parseAll(texto:String):void
 		{
-			arrayNombre = texto.split(parserNombre);
 			arrayChamp = texto.split(parserChamp);
+			arrayNombre = texto.split(parserNombre);
 			arrayDiv = texto.split(parserDiv);
 			arrayWins = texto.split(parserWins);
 			arrayPm = texto.split(parserPm);
 			arrayPerc = parseSkill(texto);
 			arrayMap = texto.split(parserMap);
-			arrayMasteries = texto.split(parserMasteries);
 			//Parse Stats
 			arrayGames = texto.split(parserGames);
 			arrayKills = texto.split(parserKills);
@@ -83,6 +83,9 @@
 			arrayAssists = texto.split(parserAssists);
 			arrayCs = texto.split(parserCs);
 			arrayGold = texto.split(parserGold);
+			//Masteries
+			texto = texto.replace(parseBreakLine,"");
+			arrayMasteries = texto.split(parserMasteries);
 
 			MapString = arrayMap[1];
 			MapString = MapString.replace("&middot;","-");

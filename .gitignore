@@ -4,6 +4,5 @@ bin/lolskill-app.xml
 *.jpg
 *.swf
 *.exe
-*.xml
-*.xml
 WinVer/bin/lolskill-winver-app.xml
+WinVer/bin/lolskill-app.xml
