@@ -26,7 +26,6 @@ function cerrarNot(MouseEvent):void
 
 function processXML(e:Event):void {
 pushNot = new XML(e.target.data);
-trace(pushNot);
 
 if(pushNot.ID[0] == "1")
 {
