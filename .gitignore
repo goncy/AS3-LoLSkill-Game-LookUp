@@ -5,3 +5,4 @@ bin/lolskill-app.xml
 *.swf
 *.exe
 WinVer/bin/lolskill-app.xml
+*.rar
