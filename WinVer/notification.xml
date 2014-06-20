@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PUSH>
-<TITULO>Notificacion</TITULO>
-<CUERPO>La app fue actualizada, descargar de aca</CUERPO>
+<TITULO TITLE="TITULO">Notificacion</TITULO>
+<CUERPO TITLE="CUERPO">La app fue actualizada, descargar de aca</CUERPO>
 </PUSH>
