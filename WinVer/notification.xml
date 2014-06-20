@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PUSH>
-<TITULO TITLE="TITULO">Notificacion</TITULO>
-<CUERPO TITLE="CUERPO">La app fue actualizada, descargar de aca</CUERPO>
-</PUSH>
+<GALLERY>
+<TITULO TITLE="school">image1.jpg</TITULO>
+<IMAGE TITLE="garden">image2.jpg</IMAGE>
+<IMAGE TITLE="shop">image3.jpg</IMAGE>
+</GALLERY>
