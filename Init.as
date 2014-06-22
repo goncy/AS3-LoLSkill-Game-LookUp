@@ -20,19 +20,18 @@ errorGame.y = stage.stageHeight / 2;
 //Initers
 removeChild(container_mc);
 container_mc.alpha = 0;
-notifBtn.buttonMode = true;
 
 //Listeners
 buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
 textloader.addEventListener(ProgressEvent.PROGRESS, deshabilitarBoton);
 textloader.addEventListener(Event.COMPLETE, agregar);
-busqueda.addEventListener(MouseEvent.CLICK, notifframe);
+donar.addEventListener(MouseEvent.CLICK, donarframe);
 
 //Funcion Donar
-function notifframe(MouseEvent):void
+function donarframe(MouseEvent):void
 {
 	checkInStage(errorGame);
 	checkInStage(carga);
 	checkInStage(container_mc);
-	gotoAndStop(1);
+	nextFrame();
 }
