@@ -20,7 +20,6 @@ errorGame.y = stage.stageHeight / 2;
 //Initers
 removeChild(container_mc);
 notifBtn.buttonMode = true;
-if(hayNot == true){notifBtn.gotoAndStop(2)};
 
 //Listeners
 buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
@@ -30,6 +29,7 @@ notifBtn.addEventListener(MouseEvent.CLICK, notifframe);
 busqueda.addEventListener(MouseEvent.CLICK, busquedaframe);
 notifBtn.addEventListener(MouseEvent.MOUSE_OVER, brightOn);
 notifBtn.addEventListener(MouseEvent.MOUSE_OUT, brightOff);
+addEventListener("Notif", hayNotif)
 
 //Funcion Notificacion
 function notifframe(MouseEvent):void
@@ -60,4 +60,10 @@ function brightOff(MouseEvent):void
 	var color:Color = new Color();
 	color.brightness = 0;         
 	notifBtn.transform.colorTransform = color;
+}
+
+//Check Not
+function hayNotif(MouseEvent):void
+{
+	notifBtn.gotoAndStop(2);
 }

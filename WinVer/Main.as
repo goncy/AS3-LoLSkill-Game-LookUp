@@ -30,9 +30,6 @@
 		public var pushNot:XML;
 		public var notLoader:URLLoader = new URLLoader();
 		
-		//Booleans
-		var hayNot:Boolean = false;
-		
 		//Strings
 		var tituloNot:String = "Bienvenidos";
 		var cuerpoNot:String = "No hay nuevas notificaciones";
@@ -146,7 +143,7 @@
 		
 			if(pushNot.ID[0] == "1")
 			{
-				hayNot = true;
+				dispatchEvent(new Event("Notif"));
 				tituloNot = pushNot.TITULO[0];
 				cuerpoNot = pushNot.CUERPO[0];
 			}
