@@ -20,19 +20,44 @@ errorGame.y = stage.stageHeight / 2;
 //Initers
 removeChild(container_mc);
 container_mc.alpha = 0;
+notifBtn.buttonMode = true;
 
 //Listeners
+buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
 textloader.addEventListener(ProgressEvent.PROGRESS, deshabilitarBoton);
 textloader.addEventListener(Event.COMPLETE, agregar);
-donar.addEventListener(MouseEvent.CLICK, donarframe);
-buscador.sumname.addEventListener(FocusEvent.FOCUS_IN, glowin);
-buscador.sumname.addEventListener(FocusEvent.FOCUS_OUT, glowout);
+notifBtn.addEventListener(MouseEvent.CLICK, notifframe);
+busqueda.addEventListener(MouseEvent.CLICK, busquedaframe);
+notifBtn.addEventListener(MouseEvent.MOUSE_OVER, brightOn);
+notifBtn.addEventListener(MouseEvent.MOUSE_OUT, brightOff);
 
-//Funcion Donar
-function donarframe(MouseEvent):void
+//Funcion Notificacion
+function notifframe(MouseEvent):void
 {
 	checkInStage(errorGame);
 	checkInStage(carga);
 	checkInStage(container_mc);
-	nextFrame();
+	gotoAndStop(2);
+}
+
+//Funcion Busqueda
+function busquedaframe(MouseEvent):void
+{
+	gotoAndStop(1);
+}
+
+//Funcion brillo boton
+function brightOn(MouseEvent):void
+{
+	var color:Color = new Color();
+	color.brightness = 0.3;         
+	notifBtn.transform.colorTransform = color;
+}
+
+//Funcion brillo boton
+function brightOff(MouseEvent):void
+{
+	var color:Color = new Color();
+	color.brightness = 0;         
+	notifBtn.transform.colorTransform = color;
 }

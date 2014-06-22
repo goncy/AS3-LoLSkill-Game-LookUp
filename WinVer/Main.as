@@ -16,6 +16,9 @@
 	import fl.transitions.TweenEvent;
 	import flash.events.MouseEvent;
 	import flash.net.navigateToURL;
+	import flash.geom.Transform;
+	import flash.geom.ColorTransform;
+	import fl.motion.Color;
 
 	public class Main extends MovieClip
 	{
