@@ -27,6 +27,15 @@
 		//Loader
 		public var externalfile:URLRequest = new URLRequest();
 		public var textloader:URLLoader = new URLLoader();
+		public var pushNot:XML;
+		public var notLoader:URLLoader = new URLLoader();
+		
+		//Booleans
+		var hayNot:Boolean = false;
+		
+		//Strings
+		var tituloNot:String = "Bienvenidos";
+		var cuerpoNot:String = "No hay nuevas notificaciones";
 		
 		//Mapa
 		public var MapString:String;
@@ -70,6 +79,8 @@
 		public function Main()
 		{
 			TweenPlugin.activate([AutoAlphaPlugin]); //activation is permanent in the SWF, so this line only needs to be run once.
+			notLoader.load(new URLRequest("https://raw.githubusercontent.com/goncy/AS3-LoLSkill-Game-LookUp/master/WinVer/notification.xml"));
+			notLoader.addEventListener(Event.COMPLETE, processXML);
 		}
 
 		function parseAll(texto:String):void
@@ -128,6 +139,17 @@
 		{
 			elemento.alpha = 0;
 			TweenLite.to(elemento, 1, {autoAlpha:1});
+		}
+		
+		function processXML(e:Event):void {
+		pushNot = new XML(e.target.data);
+		
+			if(pushNot.ID[0] == "1")
+			{
+				hayNot = true;
+				tituloNot = pushNot.TITULO[0];
+				cuerpoNot = pushNot.CUERPO[0];
+			}
 		}
 	}
 }

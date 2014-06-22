@@ -20,6 +20,7 @@ errorGame.y = stage.stageHeight / 2;
 //Initers
 removeChild(container_mc);
 notifBtn.buttonMode = true;
+if(hayNot == true){notifBtn.gotoAndStop(2)};
 
 //Listeners
 buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
@@ -36,13 +37,13 @@ function notifframe(MouseEvent):void
 	checkInStage(errorGame);
 	checkInStage(carga);
 	checkInStage(container_mc);
-	gotoAndStop(2);
+	this.gotoAndStop(2);
 }
 
 //Funcion Busqueda
 function busquedaframe(MouseEvent):void
 {
-	gotoAndStop(1);
+	this.gotoAndStop(1);
 }
 
 //Funcion brillo boton
