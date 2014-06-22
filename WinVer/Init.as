@@ -30,6 +30,7 @@ notifBtn.addEventListener(MouseEvent.CLICK, notifframe);
 busqueda.addEventListener(MouseEvent.CLICK, busquedaframe);
 notifBtn.addEventListener(MouseEvent.MOUSE_OVER, brightOn);
 notifBtn.addEventListener(MouseEvent.MOUSE_OUT, brightOff);
+notLoader.addEventListener(Event.COMPLETE, processXML);
 
 //Funcion Notificacion
 function notifframe(MouseEvent):void
@@ -38,6 +39,7 @@ function notifframe(MouseEvent):void
 	checkInStage(carga);
 	checkInStage(container_mc);
 	gotoAndStop(2);
+	notifBtn.gotoAndStop(1);
 }
 
 //Funcion Busqueda
@@ -60,4 +62,11 @@ function brightOff(MouseEvent):void
 	var color:Color = new Color();
 	color.brightness = 0;         
 	notifBtn.transform.colorTransform = color;
+}
+
+//IrFrame
+function mostrarNot(MouseEvent):void
+{
+	gotoAndStop(2);
+	notifBtn.gotoAndStop(1);
 }

@@ -25,6 +25,12 @@
 		//Loader
 		public var externalfile:URLRequest = new URLRequest();
 		public var textloader:URLLoader = new URLLoader();
+		public var pushNot:XML;
+		public var notLoader:URLLoader = new URLLoader();
+		
+		//Notificaciones
+		public var tituloNotif:String = "Bienvenidos";
+		public var cuerpoNotif:String = "No hay notificaciones nuevas";
 		
 		//Mapa
 		public var MapString:String;
@@ -67,7 +73,7 @@
 
 		public function Main()
 		{
-			// constructor code
+			notLoader.load(new URLRequest("https://raw.githubusercontent.com/goncy/AS3-LoLSkill-Game-LookUp/master/WinVer/notification.xml"));
 		}
 
 		function parseAll(texto:String):void
