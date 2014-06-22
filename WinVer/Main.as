@@ -33,6 +33,7 @@
 		//Strings
 		var tituloNot:String = "Bienvenidos";
 		var cuerpoNot:String = "No hay nuevas notificaciones";
+		var linkNot:String = "";
 		
 		//Mapa
 		public var MapString:String;
@@ -146,6 +147,7 @@
 				dispatchEvent(new Event("Notif"));
 				tituloNot = pushNot.TITULO[0];
 				cuerpoNot = pushNot.CUERPO[0];
+				linkNot = pushNot.LINK[0];
 			}
 		}
 	}
