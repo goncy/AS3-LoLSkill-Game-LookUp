@@ -19,7 +19,6 @@ errorGame.y = stage.stageHeight / 2;
 
 //Initers
 removeChild(container_mc);
-container_mc.alpha = 0;
 notifBtn.buttonMode = true;
 
 //Listeners

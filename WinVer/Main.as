@@ -1,6 +1,5 @@
 ﻿package 
 {
-
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.FocusEvent;
@@ -11,14 +10,17 @@
 	import fl.transitions.Tween;
 	import flash.display.MovieClip;
 	import fl.transitions.easing.*;
-	import com.greensock.*;
-	import com.greensock.easing.*;
 	import fl.transitions.TweenEvent;
 	import flash.events.MouseEvent;
 	import flash.net.navigateToURL;
 	import flash.geom.Transform;
 	import flash.geom.ColorTransform;
 	import fl.motion.Color;
+	import com.greensock.*;
+	import com.greensock.easing.*;
+	import com.greensock.TweenLite; 
+	import com.greensock.plugins.TweenPlugin; 
+	import com.greensock.plugins.AutoAlphaPlugin; 
 
 	public class Main extends MovieClip
 	{
@@ -67,7 +69,7 @@
 
 		public function Main()
 		{
-			// constructor code
+			TweenPlugin.activate([AutoAlphaPlugin]); //activation is permanent in the SWF, so this line only needs to be run once.
 		}
 
 		function parseAll(texto:String):void
@@ -124,6 +126,7 @@
 		
 		function animar(elemento:MovieClip):void
 		{
+			elemento.alpha = 0;
 			TweenLite.to(elemento, 1, {autoAlpha:1});
 		}
 	}

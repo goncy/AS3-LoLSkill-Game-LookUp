@@ -1,4 +1,6 @@
-﻿//Masteries
+﻿import com.greensock.TweenLite;
+
+//Masteries
 container_mc.smaso1b.addEventListener(MouseEvent.ROLL_OVER, handleMasteriesIn);
 container_mc.smaso2b.addEventListener(MouseEvent.ROLL_OVER, handleMasteriesIn);
 container_mc.smaso3b.addEventListener(MouseEvent.ROLL_OVER, handleMasteriesIn);
