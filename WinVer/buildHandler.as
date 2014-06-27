@@ -1,4 +1,4 @@
-﻿import fl.containers.UILoader; 
+﻿import fl.containers.UILoader;
 import flash.display.MovieClip;
 import fl.data.DataProvider;
 import flash.text.TextFormat;
@@ -11,9 +11,8 @@ var arrayChampsFull:Array = ["Aatrox","Ahri","Akali","Alistar","Amumu","Anivia",
 var champ:String;
 var champLoader:URLLoader = new URLLoader();
 
-var container:buildContainer = new buildContainer();
-container.y = 60;
-container.x = stage.stageWidth / 2;
+containerBuild.y = 60;
+containerBuild.x = stage.stageWidth / 2;
 
 function divideBuild(e:Event):void
 {
@@ -28,12 +27,12 @@ function divideBuild(e:Event):void
 	var parserChampStat:RegExp = new RegExp("<div class='name'>(.*?)<\/div>","sg");
 	arrayChampStat = e.target.data.split(parserChampStat);
 	//Image
-	container.champImg.source = "http://www.mobafire.com/images/champion/icon/"+champ.toLowerCase()+".png";
+	containerBuild.champImg.source = "http://www.mobafire.com/images/champion/icon/"+champ.toLowerCase()+".png";
 	//Name
-	container.champName.text = arrayChampStat[1];
+	containerBuild.champName.text = arrayChampStat[1];
 	
-	animar(container);
-	addChild(container);
+	animar(containerBuild);
+	addChild(containerBuild);
 }
 
 //Parse items
@@ -49,6 +48,6 @@ function parseItems(texto:String):void
 		item.scaleContent = false; 
 		item.source = arrayItems[i];
 		item.x = 20*i;
-		container.champBuild.addChild(item);
+		containerBuild.champBuild.addChild(item);
 	}
 }

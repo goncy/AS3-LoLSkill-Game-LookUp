@@ -1,6 +1,5 @@
 ﻿import flash.display.MovieClip;
 
-var containerCounter:containerCounterMc = new containerCounterMc();
 containerCounter.x = 115;
 containerCounter.y = 180;
 

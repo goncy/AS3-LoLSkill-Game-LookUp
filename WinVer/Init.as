@@ -6,6 +6,10 @@ animarFrame();
 var carga:Cargador = new Cargador();
 var errorGame:ErrorGame = new ErrorGame();
 
+//Containers
+var containerCounter:containerCounterMc = new containerCounterMc();
+var containerBuild:buildContainer = new buildContainer();
+
 //Declaraciones
 carga.x = stage.stageWidth /2;
 carga.y = stage.stageHeight / 2;
@@ -32,6 +36,8 @@ function notifframe(MouseEvent):void
 	checkInStage(errorGame);
 	checkInStage(carga);
 	checkInStage(container_mc);
+	checkInStage(containerCounter);
+	checkInStage(containerBuild);
 	this.gotoAndStop(2);
 }
 
@@ -48,7 +54,7 @@ function buildsframe(MouseEvent):void
 function busquedaframe(MouseEvent):void
 {	
 	checkInStage(containerCounter);
-	checkInStage(container);
+	checkInStage(containerBuild);
 	checkInStage(carga);
 	checkInStage(errorGame);
 	this.gotoAndStop(1);
