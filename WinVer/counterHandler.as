@@ -29,6 +29,7 @@ function parseCountersWeak(texto:String):void
 		arrayName[i] = arrayName[i].replace(".","-");
 
 		var item:TextField = new TextField();
+		item.selectable = false;
 		item.defaultTextFormat = formatoCounter;
 		item.autoSize = TextFieldAutoSize.LEFT;
 		item.text = arrayName[i]+" - "+arrayLane[i];
@@ -75,6 +76,7 @@ function parseCountersStrong(texto:String):void
 
 		var item:TextField = new TextField();
 		item.defaultTextFormat = formatoCounter;
+		item.selectable = false;
 		item.autoSize = TextFieldAutoSize.LEFT;
 		item.text = arrayName[i]+" - "+arrayLane[i];
 		item.embedFonts = true;
