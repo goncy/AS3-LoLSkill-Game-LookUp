@@ -96,28 +96,3 @@ function handleMasteriesOut(e:MouseEvent):void
 	break; 
 	}
 }
-
-//Effects
-function glowin(FocusEvent):void
-{
-	//Glow in effect
-	TweenMax.to(buscador.bgtext, 0.5, {glowFilter:{color:0x1E7FD9, alpha:1, blurX:5, blurY:5, strength:2}});
-	//Agregar listener una ves que se toca el campo
-	buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
-}
-
-function glowout(FocusEvent):void
-{
-	//Glow out effect
-	TweenMax.to(buscador.bgtext, 0.5, {glowFilter:{color:0x1E7FD9, alpha:0, blurX:4, blurY:4}});
-}
-
-function deshabilitarBoton(ProgressEvent):void
-{
-	buscador.bus_btn.removeEventListener(MouseEvent.CLICK, animarBoton);
-}
-
-function animarBoton(MouseEvent):void
-{
-	TweenLite.to(buscador, 0.7, {x:14, y:17, onComplete:agregarCarga});
-}

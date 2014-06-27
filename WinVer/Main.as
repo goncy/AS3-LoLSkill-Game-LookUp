@@ -150,5 +150,15 @@
 				linkNot = pushNot.LINK[0];
 			}
 		}
+		
+		function vaciarClip(clip:MovieClip):void
+		{
+			//Handler Counter
+			while (clip.numChildren > 0)
+			{
+			clip.removeChildAt(0);
+			}
+
+		}
 	}
 }
