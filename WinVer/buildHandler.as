@@ -20,8 +20,65 @@ function divideBuild(e:Event):void
 	var arrayBuild:Array = new Array();
 	var parserBuild:RegExp = new RegExp("<div class='items'>(.*?)<div class='summoners'>","sg");
 	arrayBuild = e.target.data.split(parserBuild);
+	trace(arrayBuild.length);
 	parseItems(arrayBuild[3]);
+	
+	var availableBuilds:Array = new Array();
+	var builds:int = 3;
+	
+	checkExceed();
+	checkEmpty();
+	
+	containerBuild.nextBuildBtn.addEventListener(MouseEvent.CLICK, nextBuild);
+	containerBuild.prevBuildBtn.addEventListener(MouseEvent.CLICK, prevBuild);
 
+	function checkExceed():void
+	{
+		trace(builds);
+		if(builds + 2 >= arrayBuild.length-2)
+		{
+			containerBuild.nextBuildBtn.visible = false;
+		}
+	}
+	
+	function checkEmpty():void
+	{
+		trace(builds);
+		if(builds - 2 < 5)
+		{
+			containerBuild.prevBuildBtn.visible = false;
+		}
+	}
+	
+	function nextBuild(MouseEvent):void
+	{
+		containerBuild.prevBuildBtn.visible = true;
+		checkExceed();
+		if(builds < arrayBuild.length)
+		{
+			vaciarClip(containerBuild.champBuild);
+			builds += 2;
+			parseItems(arrayBuild[builds]);
+		}
+	}
+	
+	function prevBuild(MouseEvent):void
+	{
+		containerBuild.nextBuildBtn.visible = true;
+		checkEmpty();
+		if(builds >= 5)
+		{
+			vaciarClip(containerBuild.champBuild);
+			builds -= 2;
+			parseItems(arrayBuild[builds]);
+		}
+	}
+	
+/*	for (var i:int = 3; i < arrayBuild.length; i+=2)
+	{
+		parseItems(arrayBuild[i]);
+	}
+*/
 	//Champ Stats
 	var arrayChampStat:Array = new Array();
 	var parserChampStat:RegExp = new RegExp("<div class='name'>(.*?)<\/div>","sg");

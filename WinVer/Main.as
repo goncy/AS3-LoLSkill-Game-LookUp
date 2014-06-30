@@ -2,6 +2,8 @@
 {
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
+	import flash.ui.Keyboard;
 	import flash.events.FocusEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -159,6 +161,6 @@
 			clip.removeChildAt(0);
 			}
 
-		}
+		}		
 	}
 }

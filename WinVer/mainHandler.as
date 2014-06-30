@@ -2,9 +2,23 @@
 var nombre:String;
 var region:String = "LAS";
 
-buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
 textloader.addEventListener(ProgressEvent.PROGRESS, deshabilitarBoton);
 textloader.addEventListener(Event.COMPLETE, agregar);
+buscador.sumname.addEventListener(FocusEvent.FOCUS_IN, glowin);
+buscador.sumname.addEventListener(FocusEvent.FOCUS_OUT, glowout);
+
+if(currentFrame == 1)
+{
+	buscador.sumname.addEventListener(KeyboardEvent.KEY_DOWN, pressEnter);
+}
+
+//Cargas
+function agregarCarga():void
+{
+	animar(carga);
+	addChild(carga);
+	buscar();
+}
 
 //Deshabilitar boton
 function deshabilitarBoton(ProgressEvent):void
@@ -26,7 +40,7 @@ buscarConfig();
 nombre = buscador.sumname.text;
 region = buscador.region_mc.combo.selectedItem.data;
 
-externalfile.url = "http://www.lolskill.net/game-"+region+"-"+nombre;
+externalfile.url = "http://www.lolskill.net/game/"+region+"/"+nombre;
 textloader.load(externalfile);
 
 errorGame.errorLink.text = externalfile.url;
@@ -164,4 +178,29 @@ function buscarConfig():void
 {
 	checkInStage(container_mc);
 	checkInStage(errorGame);
+}
+
+//Effects
+function glowin(FocusEvent):void
+{
+	//Glow in effect
+	TweenMax.to(buscador.bgtext, 0.5, {glowFilter:{color:0x1E7FD9, alpha:1, blurX:5, blurY:5, strength:2}});
+	//Agregar listener una ves que se toca el campo
+	buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
+}
+
+function glowout(FocusEvent):void
+{
+	//Glow out effect
+	TweenMax.to(buscador.bgtext, 0.5, {glowFilter:{color:0x1E7FD9, alpha:0, blurX:4, blurY:4}});
+}
+
+//Enter handler
+function pressEnter(evt:KeyboardEvent):void 
+{
+   //I also shortened down this code
+	if (evt.keyCode == Keyboard.ENTER)
+	{
+	   animarBoton(MouseEvent.CLICK);
+	}
 }
