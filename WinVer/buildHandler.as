@@ -8,45 +8,91 @@ import flash.text.TextFieldAutoSize;
 
 //Variables
 var arrayChampsFull:Array = ["Aatrox","Ahri","Akali","Alistar","Amumu","Anivia","Annie","Ashe","Blitzcrank","Brand","Braum","Caitlyn","Cassiopeia","ChoGath","Corki","Darius","Diana","Dr-Mundo","Draven","Elise","Evelynn","Ezreal","Fiddlesticks","Fiora","Fizz","Galio","Gangplank","Garen","Gragas","Graves","Hecarim","Heimerdinger","Irelia","Janna","Jarvan-IV","Jax","Jayce","Jinx","Karma","Karthus","Kassadin","Katarina","Kayle","Kennen","KhaZix","KogMaw","LeBlanc","Lee-Sin","Leona","Lissandra","Lucian","Lulu","Lux","Malphite","Malzahar","Maokai","Master-Yi","Miss-Fortune","Mordekaiser","Morgana","Nami","Nasus","Nautilus","Nidalee","Nocturne","Nunu","Olaf","Orianna","Pantheon","Poppy","Quinn","Rammus","Renekton","Rengar","Riven","Rumble","Ryze","Sejuani","Shaco","Shen","Shyvana","Singed","Sion","Sivir","Skarner","Sona","Soraka","Swain","Syndra","Talon","Taric","Teemo","Thresh","Tristana","Trundle","Tryndamere","Twisted-Fate","Twitch","Udyr","Urgot","Varus","Vayne","Veigar","VelKoz","Vi","Viktor","Vladimir","Volibear","Warwick","Wukong","Xerath","Xin-Zhao","Yasuo","Yorick","Zac","Zed","Ziggs","Zilean","Zyra"];
-var champ:String;
-var champLoader:URLLoader = new URLLoader();
 
 containerBuild.y = 60;
 containerBuild.x = stage.stageWidth / 2;
 
+var champ:String;
+
+//Listeners
+comboBuscador.buscarChampBtn.addEventListener(MouseEvent.CLICK, animarCombo);
+comboBuscador.combobox_cb.combo.dataProvider = new DataProvider(arrayChampsFull);
+
+//Animar combo
+function animarCombo(MouseEvent):void
+{
+	TweenLite.to(comboBuscador, 0.7, {x:14, y:17, onComplete:agregarCargaBuild});
+}
+
+function agregarLoader(e:Event):void 
+{
+	divideBuild(e);
+	divideCounter(e);
+	
+	removeChild(carga);
+}
+
+function buscarChamp():void
+{
+	var champLoader:URLLoader = new URLLoader();
+	
+	champLoader.addEventListener(Event.COMPLETE, agregarLoader);
+
+	vaciarClip(containerCounter.containerInfo);
+	vaciarClip(containerBuild.champBuild);
+	
+	checkInStage(containerBuild);
+	checkInStage(containerCounter);
+	
+	champ = comboBuscador.combobox_cb.combo.selectedItem.data;
+	var pedidoReq:URLRequest = new URLRequest("http://www.championselect.net/champions/"+champ);
+	champLoader.load(pedidoReq);
+}
+
+//Agregar carga
+function agregarCargaBuild():void
+{
+	animar(carga);
+	addChild(carga);
+	buscarChamp();
+}
+
 function divideBuild(e:Event):void
 {
-	//Divide Build
-	var arrayBuild:Array = new Array();
-	var parserBuild:RegExp = new RegExp("<div class='items'>(.*?)<div class='summoners'>","sg");
-	arrayBuild = e.target.data.split(parserBuild);
-	trace(arrayBuild.length);
-	parseItems(arrayBuild[3]);
+	//Listeners
+	containerBuild.nextBuildBtn.addEventListener(MouseEvent.CLICK, nextBuild);
+	containerBuild.prevBuildBtn.addEventListener(MouseEvent.CLICK, prevBuild);
 	
-	var availableBuilds:Array = new Array();
+	//Divide Build
+	var arrayBuilder:Array = new Array();
+	var parserBuild:RegExp = new RegExp("<div class='items'>(.*?)<div class='summoners'>","sg");
 	var builds:int = 3;
 	
+	//Handle
+	arrayBuilder = e.target.data.split(parserBuild);
+	parseItems(arrayBuilder[builds]);
+	
+	//Check
 	checkExceed();
 	checkEmpty();
 	
-	containerBuild.nextBuildBtn.addEventListener(MouseEvent.CLICK, nextBuild);
-	containerBuild.prevBuildBtn.addEventListener(MouseEvent.CLICK, prevBuild);
-
 	function checkExceed():void
 	{
-		trace(builds);
-		if(builds + 2 >= arrayBuild.length-2)
+		if(builds + 2 >= arrayBuilder.length-2)
 		{
 			containerBuild.nextBuildBtn.visible = false;
+		}else{
+			containerBuild.nextBuildBtn.visible = true;
 		}
 	}
 	
 	function checkEmpty():void
 	{
-		trace(builds);
 		if(builds - 2 < 5)
 		{
 			containerBuild.prevBuildBtn.visible = false;
+		}else{
+			containerBuild.prevBuildBtn.visible = true;
 		}
 	}
 	
@@ -54,11 +100,11 @@ function divideBuild(e:Event):void
 	{
 		containerBuild.prevBuildBtn.visible = true;
 		checkExceed();
-		if(builds < arrayBuild.length)
+		if(builds < arrayBuilder.length)
 		{
 			vaciarClip(containerBuild.champBuild);
 			builds += 2;
-			parseItems(arrayBuild[builds]);
+			parseItems(arrayBuilder[builds]);
 		}
 	}
 	
@@ -70,15 +116,10 @@ function divideBuild(e:Event):void
 		{
 			vaciarClip(containerBuild.champBuild);
 			builds -= 2;
-			parseItems(arrayBuild[builds]);
+			parseItems(arrayBuilder[builds]);
 		}
 	}
 	
-/*	for (var i:int = 3; i < arrayBuild.length; i+=2)
-	{
-		parseItems(arrayBuild[i]);
-	}
-*/
 	//Champ Stats
 	var arrayChampStat:Array = new Array();
 	var parserChampStat:RegExp = new RegExp("<div class='name'>(.*?)<\/div>","sg");

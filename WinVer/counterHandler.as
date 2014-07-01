@@ -1,4 +1,5 @@
 ﻿import flash.display.MovieClip;
+import flash.events.MouseEvent;
 
 containerCounter.x = 115;
 containerCounter.y = 180;
@@ -23,6 +24,7 @@ function parseCountersWeak(texto:String):void
 	
 	for (var i:int = 1; i < 17; i+=2)
 	{
+		arrayName[i] = arrayName[i].replace(". ","-");
 		arrayName[i] = arrayName[i].replace("'","");
 		arrayName[i] = arrayName[i].replace(" ","-");
 		arrayName[i] = arrayName[i].replace(".","-");
