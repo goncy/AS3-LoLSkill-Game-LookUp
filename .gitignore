@@ -2,7 +2,6 @@ Img/muestra.jpg
 bin/lolskill-app.xml
 *.png
 *.jpg
-*.swf
 *.exe
 WinVer/bin/lolskill-app.xml
 WinVer/bin/lolskill-winver.rar
