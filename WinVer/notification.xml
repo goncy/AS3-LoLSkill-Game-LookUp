@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PUSH>
-<ID>1</ID>
+<ID>0</ID>
 <TITULO>Bienvenidos</TITULO>
 <CUERPO>La nueva version 1.32 ya esta disponible
 * Solucionados errores internos de la busqueda de builds que causaban errores de visualizacion y de busqueda de partidas.

@@ -7,7 +7,6 @@ textloader.addEventListener(Event.COMPLETE, agregar);
 textloader.addEventListener(IOErrorEvent.IO_ERROR, errorConex);
 buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
 buscador.sumname.addEventListener(FocusEvent.FOCUS_IN, glowin);
-buscador.sumname.addEventListener(FocusEvent.FOCUS_OUT, glowout);
 
 if(currentFrame == 1)
 {
@@ -197,12 +196,6 @@ function glowin(FocusEvent):void
 {
 	//Glow in effect
 	TweenMax.to(buscador.bgtext, 0.5, {glowFilter:{color:0x1E7FD9, alpha:1, blurX:5, blurY:5, strength:2}});
-}
-
-function glowout(FocusEvent):void
-{
-	//Glow out effect
-	TweenMax.to(buscador.bgtext, 0.5, {glowFilter:{color:0x1E7FD9, alpha:0, blurX:4, blurY:4}});
 }
 
 //Enter handler
