@@ -1,10 +1,13 @@
-﻿//Stop
+﻿import flash.events.MouseEvent;
+
+//Stop
 stop();
 animarFrame();
 
 //Mensajes
 var carga:Cargador = new Cargador();
 var errorGame:ErrorGame = new ErrorGame();
+var errorConexion:errorApi = new errorApi();
 
 //Containers
 var containerCounter:containerCounterMc = new containerCounterMc();
@@ -16,6 +19,9 @@ carga.y = stage.stageHeight / 2;
 
 errorGame.x = stage.stageWidth /2;
 errorGame.y = stage.stageHeight / 2;
+
+errorConexion.x = stage.stageWidth /2;
+errorConexion.y = stage.stageHeight / 2;
 
 //Initers
 removeChild(container_mc);
@@ -35,6 +41,7 @@ function notifframe(MouseEvent):void
 {
 	checkInStage(errorGame);
 	checkInStage(carga);
+	checkInStage(errorConexion);
 	checkInStage(container_mc);
 	checkInStage(containerCounter);
 	checkInStage(containerBuild);
@@ -46,6 +53,7 @@ function buildsframe(MouseEvent):void
 {
 	checkInStage(errorGame);
 	checkInStage(carga);
+	checkInStage(errorConexion);
 	checkInStage(container_mc);
 	this.gotoAndStop(3);
 }
@@ -56,6 +64,7 @@ function busquedaframe(MouseEvent):void
 	checkInStage(containerCounter);
 	checkInStage(containerBuild);
 	checkInStage(carga);
+	checkInStage(errorConexion);
 	checkInStage(errorGame);
 	this.gotoAndStop(1);
 }
@@ -79,4 +88,33 @@ function brightOff(MouseEvent):void
 function hayNotif(MouseEvent):void
 {
 	notifBtn.gotoAndStop(2);
+}
+
+//Deshabilitar botones
+function desMenu():void
+{
+	buildsBtn.removeEventListener(MouseEvent.CLICK, buildsframe)
+	busqueda.removeEventListener(MouseEvent.CLICK, busquedaframe)
+	notifBtn.removeEventListener(MouseEvent.CLICK, notifframe)
+}
+
+//Habilitar menu
+function habMenu():void
+{
+	buildsBtn.addEventListener(MouseEvent.CLICK, buildsframe)
+	busqueda.addEventListener(MouseEvent.CLICK, busquedaframe)
+	notifBtn.addEventListener(MouseEvent.CLICK, notifframe)
+}
+
+//Error de conexion
+function errorConex(IOErrorEvent):void
+{
+	checkInStage(containerCounter);
+	checkInStage(containerBuild);
+	checkInStage(carga);
+	checkInStage(container_mc);
+	checkInStage(errorGame);
+	animar(errorConexion);
+	addChild(errorConexion);
+	habMenu();
 }

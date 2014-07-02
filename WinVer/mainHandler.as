@@ -4,6 +4,7 @@ var region:String = "LAS";
 
 textloader.addEventListener(ProgressEvent.PROGRESS, deshabilitarBoton);
 textloader.addEventListener(Event.COMPLETE, agregar);
+textloader.addEventListener(IOErrorEvent.IO_ERROR, errorConex);
 buscador.sumname.addEventListener(FocusEvent.FOCUS_IN, glowin);
 buscador.sumname.addEventListener(FocusEvent.FOCUS_OUT, glowout);
 
@@ -17,6 +18,7 @@ function agregarCarga():void
 {
 	animar(carga);
 	addChild(carga);
+	
 	buscar();
 }
 
@@ -29,6 +31,7 @@ function deshabilitarBoton(ProgressEvent):void
 //Animar boton
 function animarBoton(MouseEvent):void
 {
+	desMenu();
 	TweenLite.to(buscador, 0.7, {x:14, y:17, onComplete:agregarCarga});
 }
 
@@ -52,6 +55,8 @@ function agregar(event:Event):void
     var textoCargado:String = textloader.data;
 	//Event boton
 	buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
+	habMenu();
+	
 	//Agregar
 	try {
 		//Parse URL
@@ -178,6 +183,7 @@ function buscarConfig():void
 {
 	checkInStage(container_mc);
 	checkInStage(errorGame);
+	checkInStage(errorConexion);
 }
 
 //Effects
