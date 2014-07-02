@@ -5,6 +5,7 @@ var region:String = "LAS";
 textloader.addEventListener(ProgressEvent.PROGRESS, deshabilitarBoton);
 textloader.addEventListener(Event.COMPLETE, agregar);
 textloader.addEventListener(IOErrorEvent.IO_ERROR, errorConex);
+buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
 buscador.sumname.addEventListener(FocusEvent.FOCUS_IN, glowin);
 buscador.sumname.addEventListener(FocusEvent.FOCUS_OUT, glowout);
 
@@ -42,6 +43,11 @@ buscarConfig();
 
 nombre = buscador.sumname.text;
 region = buscador.region_mc.combo.selectedItem.data;
+
+//SO
+suminfoShared.data.sumname = nombre;
+suminfoShared.data.sumreg = buscador.region_mc.combo.selectedIndex;
+suminfoShared.flush ();
 
 externalfile.url = "http://www.lolskill.net/game/"+region+"/"+nombre;
 textloader.load(externalfile);
@@ -191,8 +197,6 @@ function glowin(FocusEvent):void
 {
 	//Glow in effect
 	TweenMax.to(buscador.bgtext, 0.5, {glowFilter:{color:0x1E7FD9, alpha:1, blurX:5, blurY:5, strength:2}});
-	//Agregar listener una ves que se toca el campo
-	buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
 }
 
 function glowout(FocusEvent):void

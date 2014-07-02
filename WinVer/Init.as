@@ -1,4 +1,5 @@
 ﻿import flash.events.MouseEvent;
+import flash.net.SharedObject;
 
 //Stop
 stop();
@@ -12,6 +13,14 @@ var errorConexion:errorApi = new errorApi();
 //Containers
 var containerCounter:containerCounterMc = new containerCounterMc();
 var containerBuild:buildContainer = new buildContainer();
+
+//SharedObject
+var suminfoShared:SharedObject = SharedObject.getLocal("summoner");
+if (!suminfoShared.data.sumname) {
+buscador.sumname.text = "";}else{
+buscador.sumname.text = suminfoShared.data.sumname;
+buscador.region_mc.combo.selectedIndex = suminfoShared.data.sumreg;
+}
 
 //Declaraciones
 carga.x = stage.stageWidth /2;
