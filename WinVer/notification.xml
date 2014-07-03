@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PUSH>
-<ID>0</ID>
+<ID>1</ID>
 <TITULO>Bienvenidos</TITULO>
 <CUERPO>La nueva version 1.33 ya esta disponible
-*Corregidos errores menores.
-*Agregado nombre de autor del build.
-*Arreglado bug de visualizacion al cambiar de pantalla antes de que termine de cargar.
+*Corregidos errores menores.
+
+*Agregado nombre de autor del build.
+
+*Arreglado bug de visualizacion al cambiar de pantalla antes de que termine de cargar.
+
 *Agregado pantalla de error en caso de error de conexion.
 
 Esta disponible la nueva pagina de facebook de la app, segui para estar al tanto!</CUERPO>
