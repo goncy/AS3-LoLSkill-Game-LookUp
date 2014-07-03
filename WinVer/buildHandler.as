@@ -7,6 +7,7 @@ import flash.text.AntiAliasType;
 import flash.text.TextFieldAutoSize;
 import flash.events.Event;
 import flash.display.Shape;
+import flash.filters.*;
 
 function divideBuild(e:Event):void
 {
@@ -27,7 +28,14 @@ function divideBuild(e:Event):void
 	rectangle.graphics.beginFill(0x4f4f4f); // choosing the colour for the fill, here it is red
 	rectangle.graphics.drawRect(-125, 55, 420,(arrayBuilder.length*20)-60); // (x spacing, y spacing, width, height)
 	rectangle.graphics.endFill(); // not always needed but I like to put it in to end the fill
+	
+	var rectangleIn:Shape = new Shape; // initializing the variable named rectangle
+	rectangleIn.graphics.beginFill(0x666666); // choosing the colour for the fill, here it is red
+	rectangleIn.graphics.drawRect(-125, 55, 137,(arrayBuilder.length*20)-60); // (x spacing, y spacing, width, height)
+	rectangleIn.graphics.endFill(); // not always needed but I like to put it in to end the fill
+
 	containerBuild.champBuild.addChild(rectangle);
+	containerBuild.champBuild.addChild(rectangleIn);
 	
 	//Parse
 	for (var i:int = 1; i < arrayBuilder.length; i+=2)
@@ -87,8 +95,9 @@ function parseBuildName(arrayNameBuild:Array):void
 		item.embedFonts = true;
 		item.antiAliasType = AntiAliasType.ADVANCED;
 		item.text = arrayNameBuild[i];
-		item.y = (20*i)+2;
+		item.y = (20*i)+5;
 		item.x = -120;
+		item.filters = [new DropShadowFilter(1)];
 		containerBuild.champBuild.addChild(item);
 	}
 }
