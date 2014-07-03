@@ -26,12 +26,12 @@ function divideBuild(e:Event):void
 	
 	var rectangle:Shape = new Shape; // initializing the variable named rectangle
 	rectangle.graphics.beginFill(0x4f4f4f); // choosing the colour for the fill, here it is red
-	rectangle.graphics.drawRect(-125, 55, 420,(arrayBuilder.length*20)-60); // (x spacing, y spacing, width, height)
+	rectangle.graphics.drawRect(-125, 57, 420,(arrayBuilder.length*20)-60); // (x spacing, y spacing, width, height)
 	rectangle.graphics.endFill(); // not always needed but I like to put it in to end the fill
 	
 	var rectangleIn:Shape = new Shape; // initializing the variable named rectangle
 	rectangleIn.graphics.beginFill(0x666666); // choosing the colour for the fill, here it is red
-	rectangleIn.graphics.drawRect(-125, 55, 137,(arrayBuilder.length*20)-60); // (x spacing, y spacing, width, height)
+	rectangleIn.graphics.drawRect(-125, 57, 137,(arrayBuilder.length*20)-60); // (x spacing, y spacing, width, height)
 	rectangleIn.graphics.endFill(); // not always needed but I like to put it in to end the fill
 
 	containerBuild.champBuild.addChild(rectangle);

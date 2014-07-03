@@ -38,6 +38,7 @@ function parseCountersWeak(texto:String):void
 		item.antiAliasType = AntiAliasType.ADVANCED;
 		item.y = 30*i;
 		item.x = 100;
+		item.filters = [new DropShadowFilter(1)];
 		containerCounter.containerInfo.addChild(item);
 		
 		var imagenItem:UILoader = new UILoader();
