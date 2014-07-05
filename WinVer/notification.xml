@@ -4,13 +4,9 @@
 <TITULO>Bienvenidos</TITULO>
 <CUERPO>La nueva version 1.33 ya esta disponible
 *Corregidos errores menores.
-
 *Agregado nombre de autor del build.
-
 *Arreglado bug de visualizacion al cambiar de pantalla antes de que termine de cargar.
-
 *Agregado pantalla de error en caso de error de conexion.
-
 Esta disponible la nueva pagina de facebook de la app, segui para estar al tanto!</CUERPO>
 <LINK>https://www.facebook.com/LOLInfoGonzaloPozzo?fref=ts</LINK>
 </PUSH>

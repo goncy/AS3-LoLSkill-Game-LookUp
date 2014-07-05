@@ -62,7 +62,6 @@ function divideBuild(e:Event):void
 //Parse items
 function parseItems(texto:String, dist:Number):void
 {
-	trace(texto);
 	var arrayItems:Array = new Array();
 	var parserItems:RegExp = new RegExp('<img src="(.*?)" \/>',"s");
 	arrayItems = texto.split(parserItems);

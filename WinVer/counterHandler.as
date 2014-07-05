@@ -1,5 +1,6 @@
 ﻿import flash.display.MovieClip;
 import flash.events.MouseEvent;
+import flash.ui.Mouse;
 
 containerCounter.x = 115;
 containerCounter.y = 180;
@@ -29,6 +30,11 @@ function parseCountersWeak(texto:String):void
 		arrayName[i] = arrayName[i].replace(" ","-");
 		arrayName[i] = arrayName[i].replace(".","-");
 
+		var itemContainer:MovieClip = new MovieClip();
+		itemContainer.buttonMode = true;
+		itemContainer.mouseChildren = false;
+		itemContainer.champ = arrayName[i];
+		itemContainer.filters = [new DropShadowFilter(1)];
 		var item:TextField = new TextField();
 		item.selectable = false;
 		item.defaultTextFormat = formatoCounter;
@@ -38,8 +44,8 @@ function parseCountersWeak(texto:String):void
 		item.antiAliasType = AntiAliasType.ADVANCED;
 		item.y = 30*i;
 		item.x = 100;
-		item.filters = [new DropShadowFilter(1)];
-		containerCounter.containerInfo.addChild(item);
+		containerCounter.containerInfo.addChild(itemContainer);
+		itemContainer.addChild(item);
 		
 		var imagenItem:UILoader = new UILoader();
 		imagenItem.scaleContent = true;
@@ -47,7 +53,8 @@ function parseCountersWeak(texto:String):void
 		imagenItem.source = "http://www.mobafire.com/images/champion/icon/"+arrayName[i].toLowerCase()+".png";
 		imagenItem.x = 20;
 		imagenItem.y = -15+30*i;
-		containerCounter.containerInfo.addChild(imagenItem);
+		itemContainer.addChild(imagenItem);
+		itemContainer.addEventListener(MouseEvent.CLICK, buscarCounter(itemContainer.champ));
 	}
 }
 
@@ -76,6 +83,11 @@ function parseCountersStrong(texto:String):void
 		arrayName[i] = arrayName[i].replace(" ","-");
 		arrayName[i] = arrayName[i].replace(".","-");
 
+		var itemContainer:MovieClip = new MovieClip();
+		itemContainer.buttonMode = true;
+		itemContainer.mouseChildren = false;
+		itemContainer.champ = arrayName[i];
+		itemContainer.filters = [new DropShadowFilter(1)];
 		var item:TextField = new TextField();
 		item.defaultTextFormat = formatoCounter;
 		item.selectable = false;
@@ -85,7 +97,8 @@ function parseCountersStrong(texto:String):void
 		item.antiAliasType = AntiAliasType.ADVANCED;
 		item.y = 30*i;
 		item.x = 400;
-		containerCounter.containerInfo.addChild(item);
+		containerCounter.containerInfo.addChild(itemContainer);
+		itemContainer.addChild(item);
 		
 		var imagenItem:UILoader = new UILoader();
 		imagenItem.scaleContent = true;
@@ -93,7 +106,8 @@ function parseCountersStrong(texto:String):void
 		imagenItem.source = "http://www.mobafire.com/images/champion/icon/"+arrayName[i].toLowerCase()+".png";
 		imagenItem.x = 320;
 		imagenItem.y = -15+30*i;
-		containerCounter.containerInfo.addChild(imagenItem);
+		itemContainer.addChild(imagenItem);
+		itemContainer.addEventListener(MouseEvent.CLICK, buscarCounter(itemContainer.champ));
 	}
 }
 
@@ -109,4 +123,33 @@ function divideCounter(e:Event):void
 	
 	animar(containerCounter);
 	addChild(containerCounter);
+}
+
+function buscarCounter(champion:String):Function {
+  return function(e:MouseEvent):void {
+	champ = champion;
+	buscarChamp2(champion);
+  };
+}
+
+//Agregar carga
+function buscarChamp2(champion):void
+{
+	desMenu();
+	animar(carga);
+	addChild(carga);
+		
+	vaciarClip(containerCounter.containerInfo);
+	vaciarClip(containerBuild.champBuild);
+
+	checkInStage(containerBuild);
+	checkInStage(containerCounter);
+	checkInStage(errorConexion);
+	
+	containerBuild.mascaraBuild.height = 42;
+	containerBuild.abajo_btn.rotation = -90;
+
+	var champLoader:URLLoader = new URLLoader();
+	champLoader.load(new URLRequest("http://www.championselect.net/champions/"+champion));
+	champLoader.addEventListener(Event.COMPLETE, agregarLoader);
 }
