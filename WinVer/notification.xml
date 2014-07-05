@@ -2,10 +2,8 @@
 <PUSH>
 <ID>1</ID>
 <TITULO>Bienvenidos</TITULO>
-<CUERPO>La nueva version 1.33 ya esta disponible
-*Corregidos errores menores.
-*Agregado nombre de autor del build.
-*Arreglado bug de visualizacion al cambiar de pantalla antes de que termine de cargar.
+<CUERPO>La nueva version 1.33 ya esta disponible/n*Corregidos errores menores.
+*Agregado nombre de autor del build.\n*Arreglado bug de visualizacion al cambiar de pantalla antes de que termine de cargar.
 *Agregado pantalla de error en caso de error de conexion.
 Esta disponible la nueva pagina de facebook de la app. Segui para estar al tanto!</CUERPO>
 <LINK>https://www.facebook.com/LOLInfoGonzaloPozzo?fref=ts</LINK>
