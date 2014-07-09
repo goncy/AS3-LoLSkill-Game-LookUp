@@ -1,5 +1,8 @@
 ﻿import flash.events.MouseEvent;
 import flash.net.SharedObject;
+import flash.events.IOErrorEvent;
+import flash.utils.Timer;
+import flash.events.TimerEvent;
 
 //Stop
 stop();
@@ -54,6 +57,7 @@ function notifframe(MouseEvent):void
 	checkInStage(container_mc);
 	checkInStage(containerCounter);
 	checkInStage(containerBuild);
+	checkInStage(containersum);
 	this.gotoAndStop(2);
 }
 
@@ -64,6 +68,7 @@ function buildsframe(MouseEvent):void
 	checkInStage(carga);
 	checkInStage(errorConexion);
 	checkInStage(container_mc);
+	checkInStage(containersum);
 	this.gotoAndStop(3);
 }
 
@@ -75,6 +80,7 @@ function busquedaframe(MouseEvent):void
 	checkInStage(carga);
 	checkInStage(errorConexion);
 	checkInStage(errorGame);
+	checkInStage(containersum);
 	this.gotoAndStop(1);
 }
 
@@ -126,4 +132,23 @@ function errorConex(IOErrorEvent):void
 	animar(errorConexion);
 	addChild(errorConexion);
 	habMenu();
+}
+
+//Carga trabada
+function cargaAdd():void
+{
+	animar(carga);
+	addChild(carga);
+	var myTimer:Timer = new Timer(5000,1);
+	myTimer.start();
+
+	myTimer.addEventListener(TimerEvent.TIMER_COMPLETE, timerDone);
+	function timerDone(e:TimerEvent):void
+	{
+		if (stage.contains(carga))
+		{
+			removeChild(carga);
+			errorConex(IOErrorEvent);
+		}
+	}
 }

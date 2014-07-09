@@ -12,27 +12,18 @@ if(currentFrame == 1)
 {
 	buscador.sumname.addEventListener(KeyboardEvent.KEY_DOWN, pressEnter);
 }
-
-//Cargas
-function agregarCarga():void
-{
-	animar(carga);
-	addChild(carga);
-	
-	buscar();
-}
-
-//Deshabilitar boton
-function deshabilitarBoton(ProgressEvent):void
-{
-	buscador.bus_btn.removeEventListener(MouseEvent.CLICK, animarBoton);
-}
-
 //Animar boton
 function animarBoton(MouseEvent):void
 {
 	desMenu();
 	TweenLite.to(buscador, 0.7, {x:14, y:17, onComplete:agregarCarga});
+}
+
+//Cargas
+function agregarCarga():void
+{
+	cargaAdd();
+	buscar();
 }
 
 //Buscar
@@ -54,12 +45,29 @@ textloader.load(externalfile);
 errorGame.errorLink.text = externalfile.url;
 }
 
+//Config buscar
+function buscarConfig():void
+{
+	checkInStage(container_mc);
+	checkInStage(errorGame);
+	checkInStage(errorConexion);
+	checkInStage(containersum);
+}
+
+//Deshabilitar boton
+function deshabilitarBoton(ProgressEvent):void
+{
+	buscador.bus_btn.removeEventListener(MouseEvent.CLICK, animarBoton);
+	buscador.bus_in_btn.removeEventListener(MouseEvent.CLICK, animarBotonSum);
+}
+
 function agregar(event:Event):void
 {	
 	//URL a String
     var textoCargado:String = textloader.data;
 	//Event boton
 	buscador.bus_btn.addEventListener(MouseEvent.CLICK, animarBoton);
+	buscador.bus_in_btn.addEventListener(MouseEvent.CLICK, animarBotonSum);
 	habMenu();
 	
 	//Agregar
@@ -183,15 +191,8 @@ function populate():void
 	container_mc.t2per.text = String(Math.round((arrayPerc[1]/(arrayPerc[0]+arrayPerc[1]))*10000)/100)+"%";
 }
 
-//Config buscar
-function buscarConfig():void
-{
-	checkInStage(container_mc);
-	checkInStage(errorGame);
-	checkInStage(errorConexion);
-}
 
-//Effects
+//Extras
 function glowin(FocusEvent):void
 {
 	//Glow in effect

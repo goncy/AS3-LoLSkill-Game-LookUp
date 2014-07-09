@@ -136,9 +136,8 @@ function buscarCounter(champion:String):Function {
 function buscarChamp2(champion):void
 {
 	desMenu();
-	animar(carga);
-	addChild(carga);
-		
+	cargaAdd();
+	
 	vaciarClip(containerCounter.containerInfo);
 	vaciarClip(containerBuild.champBuild);
 

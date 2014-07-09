@@ -160,7 +160,6 @@
 			{
 			clip.removeChildAt(0);
 			}
-
-		}		
+		}
 	}
 }
