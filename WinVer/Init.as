@@ -3,10 +3,30 @@ import flash.net.SharedObject;
 import flash.events.IOErrorEvent;
 import flash.utils.Timer;
 import flash.events.TimerEvent;
+import flash.display.MovieClip;
+import flash.events.UncaughtErrorEvent;
 
 //Stop
 stop();
 animarFrame();
+
+//Texto;
+var ubuntu = new Ubuntu();
+
+//Cargas
+var cargas:int = 0;
+
+var formato:TextFormat = new TextFormat();
+formato.size = 15;
+formato.font = ubuntu.fontName;
+formato.color = 0xFFFFFF;
+formato.align = TextFormatAlign.CENTER;
+
+var formatoLeft:TextFormat = new TextFormat();
+formatoLeft.size = 15;
+formatoLeft.font = ubuntu.fontName;
+formatoLeft.color = 0xFFFFFF;
+formatoLeft.align = TextFormatAlign.LEFT;
 
 //Mensajes
 var carga:Cargador = new Cargador();
@@ -36,7 +56,7 @@ errorConexion.x = stage.stageWidth /2;
 errorConexion.y = stage.stageHeight / 2;
 
 //Initers
-removeChild(container_mc);
+checkInStage(container_mc);
 notifBtn.buttonMode = true;
 
 //Listeners
@@ -124,6 +144,7 @@ function habMenu():void
 //Error de conexion
 function errorConex(IOErrorEvent):void
 {
+	habMenu();
 	checkInStage(containerCounter);
 	checkInStage(containerBuild);
 	checkInStage(carga);
@@ -131,7 +152,6 @@ function errorConex(IOErrorEvent):void
 	checkInStage(errorGame);
 	animar(errorConexion);
 	addChild(errorConexion);
-	habMenu();
 }
 
 //Carga trabada
@@ -139,16 +159,35 @@ function cargaAdd():void
 {
 	animar(carga);
 	addChild(carga);
-	var myTimer:Timer = new Timer(5000,1);
-	myTimer.start();
+	cargas++;
+	var tiempoCarga:Timer = new Timer(5000,1);
+	tiempoCarga.start();
 
-	myTimer.addEventListener(TimerEvent.TIMER_COMPLETE, timerDone);
+	tiempoCarga.addEventListener(TimerEvent.TIMER_COMPLETE, timerDone);
 	function timerDone(e:TimerEvent):void
 	{
-		if (stage.contains(carga))
+		if (stage.contains(carga)&&cargas==1)
 		{
-			removeChild(carga);
+			checkInStage(carga);
 			errorConex(IOErrorEvent);
 		}
+		cargas--;
 	}
+}
+
+//Crear tfield
+function textoNuevo(texto:String, posX:int, posY:int, contenedor:MovieClip, formatoTexto:TextFormat):void
+{
+	var tfield:TextField = new TextField();
+	tfield.defaultTextFormat = formatoTexto;
+	tfield.selectable = false;
+	tfield.width = 400;
+	tfield.antiAliasType = AntiAliasType.ADVANCED;
+	tfield.sharpness = 1;
+    tfield.thickness = 100;
+	tfield.htmlText = texto;
+	tfield.x = posX;
+	tfield.y = posY;
+	tfield.filters = [new DropShadowFilter(1)];
+	contenedor.addChild(tfield);
 }

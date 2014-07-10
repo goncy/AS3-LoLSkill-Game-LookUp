@@ -79,14 +79,14 @@ function agregar(event:Event):void
 		//Animar boton
 		animar(container_mc);
 		//Borrar Excedentes
-		removeChild(carga);
+		checkInStage(carga);
 		//Agregar Container
 		addChild(container_mc);
 	}catch(error:Error){
 		//Animar Error
 		animar(errorGame);
 		//Borrar Carga
-		removeChild(carga);
+		checkInStage(carga);
 		//Agregar Error
 		addChild(errorGame);
 		//Trace Error

@@ -71,6 +71,7 @@ function parseItems(texto:String, dist:Number):void
 		var item:UILoader = new UILoader();
 		item.scaleContent = false;
 		item.source = arrayItems[i];
+		trace(arrayItems[i]);
 		item.x = 20 * i;
 		item.y = dist;
 		containerBuild.champBuild.addChild(item);
@@ -79,24 +80,8 @@ function parseItems(texto:String, dist:Number):void
 
 function parseBuildName(arrayNameBuild:Array):void
 {
-	var tipoUbuntu = new Ubuntu();
-	var formatoCounter:TextFormat = new TextFormat();
-	formatoCounter.size = 15;
-	formatoCounter.font = tipoUbuntu.fontName;
-	formatoCounter.color = 0xFFFFFF;
-
 	for (var i:int = 1; i < arrayNameBuild.length; i+=2)
 	{
-		var item:TextField = new TextField();
-		item.selectable = false;
-		item.defaultTextFormat = formatoCounter;
-		item.autoSize = TextFieldAutoSize.LEFT;
-		item.embedFonts = true;
-		item.antiAliasType = AntiAliasType.ADVANCED;
-		item.text = arrayNameBuild[i];
-		item.y = (20*i)+5;
-		item.x = -120;
-		item.filters = [new DropShadowFilter(1)];
-		containerBuild.champBuild.addChild(item);
+		textoNuevo(arrayNameBuild[i], -120, 20*i, containerBuild.champBuild, formatoLeft);
 	}
 }

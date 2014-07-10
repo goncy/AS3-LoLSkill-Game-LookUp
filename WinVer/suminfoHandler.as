@@ -18,14 +18,6 @@ summonerLoader.addEventListener(IOErrorEvent.IO_ERROR, errorConex);
 buscador.bus_in_btn.addEventListener(MouseEvent.CLICK, animarBotonSum);
 summonerLoader.addEventListener(ProgressEvent.PROGRESS, deshabilitarBoton);
 
-//Texto;
-var ubuntu = new Ubuntu();
-var formato:TextFormat = new TextFormat();
-formato.size = 15;
-formato.font = ubuntu.fontName;
-formato.color = 0xFFFFFF;
-formato.align = TextFormatAlign.CENTER;
-
 //Animar boton
 function animarBotonSum(MouseEvent):void
 {
@@ -40,6 +32,7 @@ function agregarCargaSum():void
 	try{
 	buscarSum();
 	}catch(e:Error){
+	trace(e.getStackTrace());
 	errorConex(IOErrorEvent);
 	}
 }
@@ -75,19 +68,25 @@ function agregarLoaderSum(e:Event):void
 	var arrayChampInfo:Array = new Array();
 	var parserChampInfo:RegExp = new RegExp('<table class="skinned" id="championsTable">(.*?)<\/table>',"s");
 	var parserChamps:RegExp = new RegExp('<tr>(.*?)<\/tr>',"s");
-	arrayChampInfo = e.target.data.split(parserChampInfo);
-	arrayChampInfo = arrayChampInfo[1].split(parserChamps);
-
+	
 	var parserSumName:RegExp = new RegExp('<div class="name">(.*?)<\/div>',"g");
 	var parserSumRealm:RegExp = new RegExp('<div class="realm">(.*?)<\/div>',"g");
 	containersum.sumName.text = e.target.data.split(parserSumName)[1];
 	containersum.sumRealm.htmlText = e.target.data.split(parserSumRealm)[1];
+		
+	try{
+	arrayChampInfo = e.target.data.split(parserChampInfo);
+	arrayChampInfo = arrayChampInfo[1].split(parserChamps);
 
 	champHistory(arrayChampInfo);
-	
-	removeChild(carga);
+	}catch(error:Error){
+		textoNuevo("No hay partidas en ranked", -355, 50, containersum, formato);
+		textoNuevo("No hay información disponible", -355, 50, containersum, formato);
+	}
 	animar(containersum);
 	addChild(containersum);
+	checkInStage(carga);
+	checkInStage(errorConexion);
 }
 
 function champHistory(arrayChampInfo:Array):void
@@ -97,7 +96,7 @@ function champHistory(arrayChampInfo:Array):void
 	cabecera.y = -145;
 	containersum.addChild(cabecera);
 
-	for (var i:int = 3; i<arrayChampInfo.length-2 && i<28; i+=2)
+	for (var i:int = 3; i<arrayChampInfo.length && i<28; i+=2)
 	{
 		var parserChamps2:RegExp = new RegExp('<b>(.*?)<\/b>',"s");
 		var arrayChampion:Array = new Array();
@@ -126,35 +125,11 @@ function panelIzquierda(e:Event):void
 	arraySumInfo[1] = arraySumInfo[1].replace("&ndash;","-");
 	arrayInfoSplit = arraySumInfo[1].split(parserInfoSplit);
 
-	//Lineas
-	var linea:Shape = new Shape();
-	var linea2:Shape = new Shape();
-
-	linea.graphics.lineStyle(1, 0x666666, 1);
-	linea.graphics.moveTo(containersum.width-865, -150);
-	linea.graphics.lineTo(containersum.width-865, 150);
-
-	linea2.graphics.lineStyle(1, 0x333333, 1);
-	linea2.graphics.moveTo(containersum.width-866, -150);
-	linea2.graphics.lineTo(containersum.width-866, 150);
-
-	containersum.addChild(linea);
-	containersum.addChild(linea2);
-
 	containersum.division.text = arrayInfoSplit[1];
 
 	for (var i:int = 3; i < arrayInfoSplit.length; i+=2)
 	{
-		var item:TextField = new TextField();
-		item.defaultTextFormat = formato;
-		item.selectable = false;
-		item.width = 225;
-		item.antiAliasType = AntiAliasType.ADVANCED;
-		item.htmlText = arrayInfoSplit[i];
-		item.x = -355;
-		item.y = (10 * i) - 35;
-		item.filters = [new DropShadowFilter(1)];
-		containersum.addChild(item);
+		textoNuevo(arrayInfoSplit[i], -440, (10*i)-35, containersum, formato);
 	}
 }
 

@@ -123,12 +123,15 @@
 			return suma;
 		}
 
-		function checkInStage(elemento:MovieClip):void
+		function checkInStage(elemento:MovieClip):Boolean
 		{
+			var yesOrNo:Boolean = false;
 			if (stage.contains(elemento))
 			{
 				removeChild(elemento);
+				yesOrNo = true;
 			}
+			return yesOrNo;
 		}
 		
 		function animarFrame(){

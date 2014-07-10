@@ -35,17 +35,8 @@ function parseCountersWeak(texto:String):void
 		itemContainer.mouseChildren = false;
 		itemContainer.champ = arrayName[i];
 		itemContainer.filters = [new DropShadowFilter(1)];
-		var item:TextField = new TextField();
-		item.selectable = false;
-		item.defaultTextFormat = formatoCounter;
-		item.autoSize = TextFieldAutoSize.LEFT;
-		item.text = arrayName[i]+" - "+arrayLane[i];
-		item.embedFonts = true;
-		item.antiAliasType = AntiAliasType.ADVANCED;
-		item.y = 30*i;
-		item.x = 100;
+		textoNuevo(arrayName[i]+" - "+arrayLane[i], 100, (30*i)-2, itemContainer, formatoLeft);
 		containerCounter.containerInfo.addChild(itemContainer);
-		itemContainer.addChild(item);
 		
 		var imagenItem:UILoader = new UILoader();
 		imagenItem.scaleContent = true;
@@ -88,17 +79,8 @@ function parseCountersStrong(texto:String):void
 		itemContainer.mouseChildren = false;
 		itemContainer.champ = arrayName[i];
 		itemContainer.filters = [new DropShadowFilter(1)];
-		var item:TextField = new TextField();
-		item.defaultTextFormat = formatoCounter;
-		item.selectable = false;
-		item.autoSize = TextFieldAutoSize.LEFT;
-		item.text = arrayName[i]+" - "+arrayLane[i];
-		item.embedFonts = true;
-		item.antiAliasType = AntiAliasType.ADVANCED;
-		item.y = 30*i;
-		item.x = 400;
+		textoNuevo(arrayName[i]+" - "+arrayLane[i], 400, (30*i)-2, itemContainer, formatoLeft);
 		containerCounter.containerInfo.addChild(itemContainer);
-		itemContainer.addChild(item);
 		
 		var imagenItem:UILoader = new UILoader();
 		imagenItem.scaleContent = true;
