@@ -191,3 +191,14 @@ function textoNuevo(texto:String, posX:int, posY:int, contenedor:MovieClip, form
 	tfield.filters = [new DropShadowFilter(1)];
 	contenedor.addChild(tfield);
 }
+
+function uiNuevo(tamaño:int, link:String, posX:int, posY:int, contenedor:MovieClip):void
+{
+		var imagenItem:UILoader = new UILoader();
+		imagenItem.scaleContent = true;
+		imagenItem.height = tamaño;
+		imagenItem.source = link;
+		imagenItem.x = posX;
+		imagenItem.y = posY;
+		contenedor.addChild(imagenItem);
+}
