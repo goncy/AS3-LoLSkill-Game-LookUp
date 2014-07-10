@@ -68,13 +68,7 @@ function parseItems(texto:String, dist:Number):void
 	
 	for (var i:int = 1; i < arrayItems.length-1; i+=2)
 	{
-		var item:UILoader = new UILoader();
-		item.scaleContent = false;
-		item.source = arrayItems[i];
-		trace(arrayItems[i]);
-		item.x = 20 * i;
-		item.y = dist;
-		containerBuild.champBuild.addChild(item);
+		uiNuevo(28, arrayItems[i], (20*i)-36, dist, containerBuild.champBuild);
 	}
 }
 

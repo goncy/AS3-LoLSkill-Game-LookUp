@@ -5,6 +5,7 @@ import flash.utils.Timer;
 import flash.events.TimerEvent;
 import flash.display.MovieClip;
 import flash.events.UncaughtErrorEvent;
+import flash.filters.GlowFilter;
 
 //Stop
 stop();
@@ -160,13 +161,13 @@ function cargaAdd():void
 	animar(carga);
 	addChild(carga);
 	cargas++;
-	var tiempoCarga:Timer = new Timer(5000,1);
+	var tiempoCarga:Timer = new Timer(15000,1);
 	tiempoCarga.start();
 
 	tiempoCarga.addEventListener(TimerEvent.TIMER_COMPLETE, timerDone);
 	function timerDone(e:TimerEvent):void
 	{
-		if (stage.contains(carga)&&cargas==1)
+		if (stage.contains(carga)&&(cargas==1||cargas==0))
 		{
 			checkInStage(carga);
 			errorConex(IOErrorEvent);
@@ -201,4 +202,29 @@ function uiNuevo(tamaño:int, link:String, posX:int, posY:int, contenedor:MovieC
 		imagenItem.x = posX;
 		imagenItem.y = posY;
 		contenedor.addChild(imagenItem);
+}
+
+function getFilter(objeto:String):GlowFilter
+{
+	var glow:GlowFilter = new GlowFilter();
+	
+	glow.alpha = 0.7;
+	glow.blurX = 12;
+	glow.blurY = 12;
+
+	switch (objeto){
+	
+	case "blueteam":
+	glow.color = (0x2045A6);
+	break;
+	
+	case "self":
+	glow.color = (0xD9CE33);
+	break;
+	
+	case "purpleteam":
+	glow.color = (0x641A95);
+	break;
+	}
+	return glow;
 }

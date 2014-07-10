@@ -42,6 +42,7 @@
 		
 		//Variables Arrays
 		public var arrayNombre:Array = new Array();
+		public var arrayColor:Array = new Array();
 		public var suma:Array = [0,0];
 		public var arraySkill:Array = new Array();
 		public var arrayChamp:Array = new Array();
@@ -59,6 +60,7 @@
 		public var arrayCs:Array = new Array();
 		public var arrayGold:Array = new Array();
 		//Variables RegExp
+		public var parserColor:RegExp = new RegExp('<div class="gamecard (.*?)">',"s");
 		public var parserNombre:RegExp = new RegExp('<div class="summonername"><a href=".*?">(.*?)<\/a>',"s");
 		public var parserSkill:RegExp = new RegExp('<div class="skillscore tooltip" title=".*?<b>(.*?)<\/b>',"s");
 		public var parserChamp:RegExp = new RegExp('<div class="img" style="background:url\\((.*?)\\)"><\/div>',"s");
@@ -85,6 +87,7 @@
 
 		function parseAll(texto:String):void
 		{
+			arrayColor = texto.split(parserColor);
 			arrayChamp = texto.split(parserChamp);
 			arrayNombre = texto.split(parserNombre);
 			arrayDiv = texto.split(parserDiv);

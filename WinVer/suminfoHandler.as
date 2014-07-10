@@ -80,8 +80,8 @@ function agregarLoaderSum(e:Event):void
 
 	champHistory(arrayChampInfo);
 	}catch(error:Error){
-		textoNuevo("No hay partidas en ranked", -355, 50, containersum, formato);
-		textoNuevo("No hay información disponible", -355, 50, containersum, formato);
+		textoNuevo("No hay partidas en ranked", -40, -20, containersum, formato);
+		textoNuevo("No hay información disponible", -440, 50, containersum, formato);
 	}
 	animar(containersum);
 	addChild(containersum);

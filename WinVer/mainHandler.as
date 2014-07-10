@@ -96,96 +96,35 @@ function agregar(event:Event):void
 
 function populate():void
 {
-	//Champ
-	container_mc.simg1.source = arrayChamp[1];
-	container_mc.simg2.source = arrayChamp[3];
-	container_mc.simg3.source = arrayChamp[5];
-	container_mc.simg4.source = arrayChamp[7];
-	container_mc.simg5.source = arrayChamp[9];
-	container_mc.simg6.source = arrayChamp[11];
-	container_mc.simg7.source = arrayChamp[13];
-	container_mc.simg8.source = arrayChamp[15];
-	container_mc.simg9.source = arrayChamp[17];
-	container_mc.simg10.source = arrayChamp[19];
-	//Nombre
-	container_mc.s1.text = arrayNombre[1];
-	container_mc.s2.text = arrayNombre[3];
-	container_mc.s3.text = arrayNombre[5];
-	container_mc.s4.text = arrayNombre[7];
-	container_mc.s5.text = arrayNombre[9];
-	container_mc.s6.text = arrayNombre[11];
-	container_mc.s7.text = arrayNombre[13];
-	container_mc.s8.text = arrayNombre[15];
-	container_mc.s9.text = arrayNombre[17];
-	container_mc.s10.text = arrayNombre[19];
-	//Skill
-	container_mc.sskill1.text = arraySkill[1];
-	container_mc.sskill2.text = arraySkill[3];
-	container_mc.sskill3.text = arraySkill[5];
-	container_mc.sskill4.text = arraySkill[7];
-	container_mc.sskill5.text = arraySkill[9];
-	container_mc.sskill6.text = arraySkill[11];
-	container_mc.sskill7.text = arraySkill[13];
-	container_mc.sskill8.text = arraySkill[15];
-	container_mc.sskill9.text = arraySkill[17];
-	container_mc.sskill10.text = arraySkill[19];
-	//Division
-	container_mc.sdiv1.htmlText = arrayDiv[1];
-	container_mc.sdiv2.htmlText = arrayDiv[3];
-	container_mc.sdiv3.htmlText = arrayDiv[5];
-	container_mc.sdiv4.htmlText = arrayDiv[7];
-	container_mc.sdiv5.htmlText = arrayDiv[9];
-	container_mc.sdiv6.htmlText = arrayDiv[11];
-	container_mc.sdiv7.htmlText = arrayDiv[13];
-	container_mc.sdiv8.htmlText = arrayDiv[15];
-	container_mc.sdiv9.htmlText = arrayDiv[17];
-	container_mc.sdiv10.htmlText = arrayDiv[19];
-	//Wins
-	container_mc.swin1.htmlText = arrayWins[1];
-	container_mc.swin2.htmlText = arrayWins[3];
-	container_mc.swin3.htmlText = arrayWins[5];
-	container_mc.swin4.htmlText = arrayWins[7];
-	container_mc.swin5.htmlText = arrayWins[9];
-	container_mc.swin6.htmlText = arrayWins[11];
-	container_mc.swin7.htmlText = arrayWins[13];
-	container_mc.swin8.htmlText = arrayWins[15];
-	container_mc.swin9.htmlText = arrayWins[17];
-	container_mc.swin10.htmlText = arrayWins[19];
-	//Premade
-	container_mc.spm1.source = arrayPm[1];
-	container_mc.spm2.source = arrayPm[3];
-	container_mc.spm3.source = arrayPm[5];
-	container_mc.spm4.source = arrayPm[7];
-	container_mc.spm5.source = arrayPm[9];
-	container_mc.spm6.source = arrayPm[11];
-	container_mc.spm7.source = arrayPm[13];
-	container_mc.spm8.source = arrayPm[15];
-	container_mc.spm9.source = arrayPm[17];
-	container_mc.spm10.source = arrayPm[19];
+	for (var i:int=1; i < arrayChamp.length; i+=2)
+	{
+		var plaza:plazaContainer = new plazaContainer();
+		plaza.filters = [getFilter(arrayColor[i])];
+		plaza.simg.source = arrayChamp[i];
+		plaza.sum.filters = [getFilter(arrayColor[i])];
+		plaza.sum.text = arrayNombre[i];
+		plaza.sskill.text = arraySkill[i];
+		plaza.sdiv.htmlText = arrayDiv[i];
+		plaza.swin.htmlText = arrayWins[i];
+		plaza.spm.source = arrayPm[i];
+		plaza.sstats.text = arrayGames[i]+"\n"+arrayKills[i]+"\n"+arrayDeaths[i]+"\n"+arrayAssists[i]+"\n"+arrayCs[i]+"\n"+arrayGold[i];
+		plaza.smaso.masteries.htmlText = arrayMasteries[1];
+		plaza.smasob.addEventListener(MouseEvent.ROLL_OVER, handleMasteriesIn);
+		plaza.smasob.addEventListener(MouseEvent.ROLL_OUT, handleMasteriesOut);
+		plaza.bs.addEventListener(MouseEvent.CLICK, bssumoner);
+
+		if(i < arrayChamp.length/2)
+		{
+			plaza.x = (77.9*i)-65;
+			plaza.y = 65;
+		}else{
+			plaza.x = (155.8*i/2)-(container_mc.width+72);
+			plaza.y = 405;
+		}
+		container_mc.addChild(plaza);
+	}
 	//Mapa
 	container_mc.mapa.htmlText = MapString;
-	//Stats
-	container_mc.sstats1.text = arrayGames[1]+"\n"+arrayKills[1]+"\n"+arrayDeaths[1]+"\n"+arrayAssists[1]+"\n"+arrayCs[1]+"\n"+arrayGold[1];
-	container_mc.sstats2.text = arrayGames[3]+"\n"+arrayKills[3]+"\n"+arrayDeaths[3]+"\n"+arrayAssists[3]+"\n"+arrayCs[3]+"\n"+arrayGold[3];
-	container_mc.sstats3.text = arrayGames[5]+"\n"+arrayKills[5]+"\n"+arrayDeaths[5]+"\n"+arrayAssists[5]+"\n"+arrayCs[5]+"\n"+arrayGold[5];
-	container_mc.sstats4.text = arrayGames[7]+"\n"+arrayKills[7]+"\n"+arrayDeaths[7]+"\n"+arrayAssists[7]+"\n"+arrayCs[7]+"\n"+arrayGold[7];
-	container_mc.sstats5.text = arrayGames[9]+"\n"+arrayKills[9]+"\n"+arrayDeaths[9]+"\n"+arrayAssists[9]+"\n"+arrayCs[9]+"\n"+arrayGold[9];
-	container_mc.sstats6.text = arrayGames[11]+"\n"+arrayKills[11]+"\n"+arrayDeaths[11]+"\n"+arrayAssists[11]+"\n"+arrayCs[11]+"\n"+arrayGold[11];
-	container_mc.sstats7.text = arrayGames[13]+"\n"+arrayKills[13]+"\n"+arrayDeaths[13]+"\n"+arrayAssists[13]+"\n"+arrayCs[13]+"\n"+arrayGold[13];
-	container_mc.sstats8.text = arrayGames[15]+"\n"+arrayKills[15]+"\n"+arrayDeaths[15]+"\n"+arrayAssists[15]+"\n"+arrayCs[15]+"\n"+arrayGold[15];
-	container_mc.sstats9.text = arrayGames[17]+"\n"+arrayKills[17]+"\n"+arrayDeaths[17]+"\n"+arrayAssists[17]+"\n"+arrayCs[17]+"\n"+arrayGold[17];
-	container_mc.sstats10.text = arrayGames[19]+"\n"+arrayKills[19]+"\n"+arrayDeaths[19]+"\n"+arrayAssists[19]+"\n"+arrayCs[19]+"\n"+arrayGold[19];
-	//Masteries
-	container_mc.smaso1.masteries.htmlText = arrayMasteries[1];
-	container_mc.smaso2.masteries.htmlText = arrayMasteries[3];
-	container_mc.smaso3.masteries.htmlText = arrayMasteries[5];
-	container_mc.smaso4.masteries.htmlText = arrayMasteries[7];
-	container_mc.smaso5.masteries.htmlText = arrayMasteries[9];
-	container_mc.smaso6.masteries.htmlText = arrayMasteries[11];
-	container_mc.smaso7.masteries.htmlText = arrayMasteries[13];
-	container_mc.smaso8.masteries.htmlText = arrayMasteries[15];
-	container_mc.smaso9.masteries.htmlText = arrayMasteries[17];
-	container_mc.smaso10.masteries.htmlText = arrayMasteries[19];
 	//Porcentajes
 	container_mc.t1per.text = String(Math.round((arrayPerc[0]/(arrayPerc[0]+arrayPerc[1]))*10000)/100)+"%";
 	container_mc.t2per.text = String(Math.round((arrayPerc[1]/(arrayPerc[0]+arrayPerc[1]))*10000)/100)+"%";

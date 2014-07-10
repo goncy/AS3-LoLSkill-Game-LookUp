@@ -17,12 +17,6 @@ function parseCountersWeak(texto:String):void
 	arrayName = texto.split(parserName);
 	arrayLane = texto.split(parserLane);
 
-	var tipoUbuntu = new Ubuntu();
-	var formatoCounter:TextFormat = new TextFormat();
-	formatoCounter.size = 15;
-	formatoCounter.font = tipoUbuntu.fontName;
-	formatoCounter.color = 0xFFFFFF;
-	
 	for (var i:int = 1; i < 17; i+=2)
 	{
 		arrayName[i] = arrayName[i].replace(". ","-");
@@ -38,13 +32,7 @@ function parseCountersWeak(texto:String):void
 		textoNuevo(arrayName[i]+" - "+arrayLane[i], 100, (30*i)-2, itemContainer, formatoLeft);
 		containerCounter.containerInfo.addChild(itemContainer);
 		
-		var imagenItem:UILoader = new UILoader();
-		imagenItem.scaleContent = true;
-		imagenItem.height = 50;
-		imagenItem.source = "http://www.mobafire.com/images/champion/icon/"+arrayName[i].toLowerCase()+".png";
-		imagenItem.x = 20;
-		imagenItem.y = -15+30*i;
-		itemContainer.addChild(imagenItem);
+		uiNuevo(50, "http://www.mobafire.com/images/champion/icon/"+arrayName[i].toLowerCase()+".png", 20, -15+30*i, itemContainer);
 		itemContainer.addEventListener(MouseEvent.CLICK, buscarCounter(itemContainer.champ));
 	}
 }
