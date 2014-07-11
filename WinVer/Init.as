@@ -29,6 +29,12 @@ formatoLeft.font = ubuntu.fontName;
 formatoLeft.color = 0xFFFFFF;
 formatoLeft.align = TextFormatAlign.LEFT;
 
+var formatoChico:TextFormat = new TextFormat();
+formatoChico.size = 14;
+formatoChico.font = ubuntu.fontName;
+formatoChico.color = 0xFFFFFF;
+formatoChico.align = TextFormatAlign.LEFT;
+
 //Mensajes
 var carga:Cargador = new Cargador();
 var errorGame:ErrorGame = new ErrorGame();

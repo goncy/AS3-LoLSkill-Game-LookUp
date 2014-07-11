@@ -16,7 +16,7 @@ if(currentFrame == 1)
 function animarBoton(MouseEvent):void
 {
 	desMenu();
-	TweenLite.to(buscador, 0.7, {x:10, y:17, onComplete:agregarCarga});
+	TweenLite.to(buscador, 0.7, {x:14, y:17, onComplete:agregarCarga});
 }
 
 //Cargas
