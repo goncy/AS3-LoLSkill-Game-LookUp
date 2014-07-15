@@ -37,7 +37,7 @@ function ldrStatus(evt:*):void
     if(times < limit) doThePing();
 }
 
-var pingTimer:Timer = new Timer(1000);
+var pingTimer:Timer = new Timer(2000);
 pingTimer.addEventListener(TimerEvent.TIMER, timerListener);
 function timerListener (e:TimerEvent):void{
 ping();

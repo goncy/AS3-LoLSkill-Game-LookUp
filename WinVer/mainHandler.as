@@ -108,7 +108,7 @@ function populate():void
 		plaza.swin.htmlText = arrayWins[i];
 		plaza.spm.source = arrayPm[i];
 		plaza.sstats.text = arrayGames[i]+"\n"+arrayKills[i]+"\n"+arrayDeaths[i]+"\n"+arrayAssists[i]+"\n"+arrayCs[i]+"\n"+arrayGold[i];
-		plaza.smaso.masteries.htmlText = arrayMasteries[1];
+		plaza.smaso.masteries.htmlText = arrayMasteries[i];
 		plaza.smasob.addEventListener(MouseEvent.ROLL_OVER, handleMasteriesIn);
 		plaza.smasob.addEventListener(MouseEvent.ROLL_OUT, handleMasteriesOut);
 		plaza.bs.addEventListener(MouseEvent.CLICK, bssumoner);
