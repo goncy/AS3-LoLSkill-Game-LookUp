@@ -5,8 +5,3 @@
 <CUERPO>ATENCION: El PING es estimativo, es realizado a la pagina de League Of Legends, no al servidor. Sirve para: Si siempre tenes 400ms en la app y un dia la app te marca 800, significa que vas a tener ping! Cuando encuentre como hacer un ping a una ip desde AS3 lo solucionare!, muchas gracias!</CUERPO>
 <LINK>https://www.facebook.com/LOLInfoGonzaloPozzo?fref=ts</LINK>
 </PUSH>
-<update xmlns="http://ns.adobe.com/air/framework/update/description/2.5">
-    <versionNumber>2</versionNumber>
-    <url>https://github.com/goncy/AS3-LoLSkill-Game-LookUp/raw/master/WinVer/bin/LOLInfo.exe</url>
-    <description>*Prueba</description>
-</update>

@@ -5,7 +5,7 @@ import air.update.events.UpdateEvent;
 import flash.events.ErrorEvent;
 
 var appUpdater:ApplicationUpdaterUI = new ApplicationUpdaterUI;
-appUpdater.updateURL = "https://raw.githubusercontent.com/goncy/AS3-LoLSkill-Game-LookUp/master/WinVer/notification.xml";
+appUpdater.updateURL = "https://raw.githubusercontent.com/goncy/AS3-LoLSkill-Game-LookUp/master/WinVer/updater.xml";
 appUpdater.delay = 0;
 appUpdater.initialize();
 
