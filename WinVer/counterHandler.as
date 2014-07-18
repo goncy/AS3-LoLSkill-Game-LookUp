@@ -29,10 +29,10 @@ function parseCountersWeak(texto:String):void
 		itemContainer.mouseChildren = false;
 		itemContainer.champ = arrayName[i];
 		itemContainer.filters = [new DropShadowFilter(1)];
-		textoNuevo(arrayName[i]+" - "+arrayLane[i], 100, (30*i)-2, itemContainer, formatoLeft);
+		textoNuevo(arrayName[i]+" - "+arrayLane[i], 100, (30*i)-2, itemContainer, formatoLeft, 250);
 		containerCounter.containerInfo.addChild(itemContainer);
 		
-		uiNuevo(50, "http://www.mobafire.com/images/champion/icon/"+arrayName[i].toLowerCase()+".png", 20, -15+30*i, itemContainer);
+		uiNuevoCounter(50, "http://www.mobafire.com/images/champion/icon/"+arrayName[i].toLowerCase()+".png", 20, -15+30*i, itemContainer);
 		itemContainer.addEventListener(MouseEvent.CLICK, buscarCounter(itemContainer.champ));
 	}
 }
@@ -61,10 +61,10 @@ function parseCountersStrong(texto:String):void
 		itemContainer.mouseChildren = false;
 		itemContainer.champ = arrayName[i];
 		itemContainer.filters = [new DropShadowFilter(1)];
-		textoNuevo(arrayName[i]+" - "+arrayLane[i], 400, (30*i)-2, itemContainer, formatoLeft);
+		textoNuevo(arrayName[i]+" - "+arrayLane[i], 400, (30*i)-2, itemContainer, formatoLeft, 250);
 		containerCounter.containerInfo.addChild(itemContainer);
 		
-		uiNuevo(50, "http://www.mobafire.com/images/champion/icon/"+arrayName[i].toLowerCase()+".png", 320, -15+30*i, itemContainer);
+		uiNuevoCounter(50, "http://www.mobafire.com/images/champion/icon/"+arrayName[i].toLowerCase()+".png", 320, -15+30*i, itemContainer);
 		itemContainer.addEventListener(MouseEvent.CLICK, buscarCounter(itemContainer.champ));
 	}
 }

@@ -135,6 +135,7 @@ function populate():void
 function glowin(FocusEvent):void
 {
 	//Glow in effect
+	buscador.sumname.text = "";
 	TweenMax.to(buscador.bgtext, 0.5, {glowFilter:{color:0x1E7FD9, alpha:1, blurX:5, blurY:5, strength:2}});
 }
 

@@ -63,12 +63,18 @@ function divideBuild(e:Event):void
 function parseItems(texto:String, dist:Number):void
 {
 	var arrayItems:Array = new Array();
+	var arrayItemsId:Array = new Array();
 	var parserItems:RegExp = new RegExp('<img src="(.*?)" \/>',"s");
+	var parserItemsId:RegExp = new RegExp('http://www.probuilds.net/resources/img/items/28/(.*?).png',"s");
+	
+	arrayItemsId = texto.split(parserItemsId);
 	arrayItems = texto.split(parserItems);
 	
 	for (var i:int = 1; i < arrayItems.length-1; i+=2)
 	{
-		uiNuevo(28, arrayItems[i], (20*i)-36, dist, containerBuild.champBuild);
+		arrayItemsId[i] = arrayItemsId[i].replace("/EmptyIcon","0000");
+		arrayItemsId[i] = arrayItemsId[i].replace("3350","3340");
+		uiNuevo(28, arrayItems[i], (20*i)-36, dist, containerBuild.champBuild, arrayItemsId[i]);
 	}
 }
 
@@ -76,6 +82,6 @@ function parseBuildName(arrayNameBuild:Array):void
 {
 	for (var i:int = 1; i < arrayNameBuild.length; i+=2)
 	{
-		textoNuevo(arrayNameBuild[i], -123, 20*i, containerBuild.champBuild, formatoChico);
+		textoNuevo(arrayNameBuild[i], -123, 20*i, containerBuild.champBuild, formatoChico, 140);
 	}
 }
