@@ -7,6 +7,6 @@
 </PUSH>
 <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5">
     <versionNumber>2</versionNumber>
-    <url>app:/remoteFolder/NativeUpdater.exe</url>
-    <description>This is a new version of NativeUpdater application.</description>
+    <url>https://github.com/goncy/AS3-LoLSkill-Game-LookUp/raw/master/WinVer/bin/LOLInfo.exe</url>
+    <description>*Prueba</description>
 </update>
