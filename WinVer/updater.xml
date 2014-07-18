@@ -1,5 +1,5 @@
 <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5">
-    <versionNumber>1.37</versionNumber>
+    <versionNumber>1.38</versionNumber>
     <url>https://github.com/goncy/AS3-LoLSkill-Game-LookUp/raw/master/WinVer/bin/LOLInfo.exe</url>
     <description>*Borrar al tocar campo de busqueda.
 *Facebook actualizado.
