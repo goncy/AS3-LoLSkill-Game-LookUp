@@ -48,6 +48,7 @@ errorGame.errorLink.text = externalfile.url;
 //Config buscar
 function buscarConfig():void
 {
+	vaciarClip(container_mc);
 	checkInStage(container_mc);
 	checkInStage(errorGame);
 	checkInStage(errorConexion);
@@ -124,10 +125,11 @@ function populate():void
 		container_mc.addChild(plaza);
 	}
 	//Mapa
-	container_mc.mapa.htmlText = MapString;
+	mapaBarra.game_map.htmlText = MapString;
 	//Porcentajes
-	container_mc.t1per.text = String(Math.round((arrayPerc[0]/(arrayPerc[0]+arrayPerc[1]))*10000)/100)+"%";
-	container_mc.t2per.text = String(Math.round((arrayPerc[1]/(arrayPerc[0]+arrayPerc[1]))*10000)/100)+"%";
+	mapaBarra.t1per.text = String(Math.round((arrayPerc[0]/(arrayPerc[0]+arrayPerc[1]))*10000)/100)+"%";
+	mapaBarra.t2per.text = String(Math.round((arrayPerc[1]/(arrayPerc[0]+arrayPerc[1]))*10000)/100)+"%";
+	container_mc.addChild(mapaBarra);
 }
 
 

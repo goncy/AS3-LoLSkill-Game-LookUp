@@ -45,6 +45,7 @@ formatoItem.font = ubuntu.fontName;
 var carga:Cargador = new Cargador();
 var errorGame:ErrorGame = new ErrorGame();
 var errorConexion:errorApi = new errorApi();
+var mapaBarra:Mapa = new Mapa();
 
 //Containers
 var containerCounter:containerCounterMc = new containerCounterMc();
@@ -67,6 +68,9 @@ errorGame.y = stage.stageHeight / 2;
 
 errorConexion.x = stage.stageWidth /2;
 errorConexion.y = stage.stageHeight / 2;
+
+mapaBarra.y = 349.85;
+mapaBarra.x = 12.60;
 
 //Initers
 checkInStage(container_mc);
@@ -220,7 +224,6 @@ function uiNuevo(tamaño:int, link:String, posX:int, posY:int, contenedor:MovieC
 		contenedorUI.mouseChildren = false;
 		contenedorUI.addChild(imagenItem);
 		contenedor.addChild(contenedorUI);
-		trace(idItem);
 }
 
 function uiNuevoCounter(tamaño:int, link:String, posX:int, posY:int, contenedor:MovieClip):void
