@@ -28,7 +28,7 @@ function completeLoaderHandler(event:Event):void {
 
 function champName(id:String):void
 {
-	var urlRequest:URLRequest  = new URLRequest("https://las.api.pvp.net/api/lol/static-data/las/v1.2/champion/"+id+"?locale=es_ES&api_key=79cec077-7792-4ac8-90cc-a43d5cff69a6");
+	var urlRequest:URLRequest  = new URLRequest("https://las.api.pvp.net/api/lol/static-data/las/v1.2/champion/"+id+"?api_key=79cec077-7792-4ac8-90cc-a43d5cff69a6");
 	
 	var urlLoader:URLLoader = new URLLoader();
 	urlLoader.addEventListener(Event.COMPLETE, completeFreeChampHandler);
@@ -72,6 +72,9 @@ function firstToUpper(word):String {
 	word = word.replace("'","");
 	word = word.replace("’","");
 	word = word.replace(". ","");
+	word = word.replace("ChoGath","Chogath");
+	word = word.replace("KhaZix","Khazix");
+	word = word.replace("LeBlanc","Leblanc");
 //	var firstLetter:String = word.substring(1, 0);
 //	var restOfWord:String = word.substring(1);
 //	return (firstLetter.toUpperCase()+restOfWord.toLowerCase());
