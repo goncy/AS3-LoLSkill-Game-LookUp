@@ -70,9 +70,12 @@ function champName(id:String):void
 
 function firstToUpper(word):String {
 	word = word.replace("'","");
-	var firstLetter:String = word.substring(1, 0);
-	var restOfWord:String = word.substring(1);
-	return (firstLetter.toUpperCase()+restOfWord.toLowerCase());
+	word = word.replace("’","");
+	word = word.replace(". ","");
+//	var firstLetter:String = word.substring(1, 0);
+//	var restOfWord:String = word.substring(1);
+//	return (firstLetter.toUpperCase()+restOfWord.toLowerCase());
+	return word;
 }
 
 function animar(elemento:MovieClip):void
