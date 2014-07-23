@@ -18,6 +18,11 @@
 	import flash.geom.Transform;
 	import flash.geom.ColorTransform;
 	import fl.motion.Color;
+	import air.update.ApplicationUpdaterUI;
+	import flash.filesystem.File;
+	import air.update.events.StatusUpdateEvent;
+	import air.update.events.UpdateEvent;
+	import flash.events.ErrorEvent;
 	import com.greensock.*;
 	import com.greensock.easing.*;
 	import com.greensock.TweenLite; 
@@ -32,11 +37,24 @@
 		public var pushNot:XML;
 		public var notLoader:URLLoader = new URLLoader();
 		
+		//Shared options
+		public var optionsShared:SharedObject = SharedObject.getLocal("Opciones");
+		
+		public var ping_opt:Boolean = true;
+		public var ini_win_opt:Boolean = true;
+		public var notif_opt:Boolean = true;
+		public var item_opt:Boolean = false;
+		public var min_win_opt:Boolean = true;
+		
 		//Strings
 		var tituloNot:String = "Bienvenidos";
 		var cuerpoNot:String = "No hay nuevas notificaciones";
 		var linkNot:String = "";
 		
+		//Actualizacion
+		public var appUpdater:ApplicationUpdaterUI = new ApplicationUpdaterUI;
+		public var launchUpdate:Timer = new Timer(2000,1);
+				
 		//Mapa
 		public var MapString:String;
 		
@@ -81,8 +99,26 @@
 		public function Main()
 		{
 			TweenPlugin.activate([AutoAlphaPlugin]); //activation is permanent in the SWF, so this line only needs to be run once.
-			notLoader.load(new URLRequest("https://raw.githubusercontent.com/goncy/AS3-LoLSkill-Game-LookUp/master/WinVer/notification.xml"));
+			if(optionsShared.data.notif_opt)notLoader.load(new URLRequest("https://raw.githubusercontent.com/goncy/AS3-LoLSkill-Game-LookUp/master/WinVer/notification.xml"));
+			configUpdater();
+			launchUpdate.start();
+			
 			notLoader.addEventListener(Event.COMPLETE, processXML);
+			launchUpdate.addEventListener(TimerEvent.TIMER, goUpdate);
+		}
+
+		function configUpdater():void
+		{
+			appUpdater.addEventListener(UpdateEvent.INITIALIZED, onUpdate);
+			appUpdater.addEventListener(ErrorEvent.ERROR, onError);
+			appUpdater.updateURL = "https://raw.githubusercontent.com/goncy/AS3-LoLSkill-Game-LookUp/master/WinVer/updater.xml";
+			appUpdater.delay = 5;
+			appUpdater.isCheckForUpdateVisible = false;
+			appUpdater.isDownloadUpdateVisible = true;
+			appUpdater.isDownloadProgressVisible = true;
+			appUpdater.isInstallUpdateVisible = true;
+			appUpdater.isFileUpdateVisible = true;
+			appUpdater.isUnexpectedErrorVisible = true;
 		}
 
 		function parseAll(texto:String):void
@@ -163,6 +199,20 @@
 			{
 			clip.removeChildAt(0);
 			}
+		}
+		
+		function onUpdate(event:UpdateEvent):void
+		{
+			appUpdater.checkNow();
+		}
+		
+		function onError(event:ErrorEvent):void
+		{
+			trace(event);
+		}
+		
+		function goUpdate(e:TimerEvent):void{
+			appUpdater.initialize();
 		}
 	}
 }

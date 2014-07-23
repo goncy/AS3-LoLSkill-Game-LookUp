@@ -7,6 +7,14 @@ import flash.display.MovieClip;
 import flash.events.UncaughtErrorEvent;
 import flash.filters.GlowFilter;
 import flash.ui.Mouse;
+import flash.events.NativeWindowDisplayStateEvent;
+import flash.display.BitmapData;
+import flash.display.Loader;
+import flash.display.NativeMenu;
+import flash.display.NativeMenuItem;
+import flash.desktop.NativeApplication;
+import flash.desktop.SystemTrayIcon;
+import flash.display.NativeWindowDisplayState;
 
 //Stop
 stop();
@@ -58,6 +66,13 @@ buscador.sumname.text = "";}else{
 buscador.sumname.text = suminfoShared.data.sumname;
 buscador.region_mc.combo.selectedIndex = suminfoShared.data.sumreg;
 }
+
+//SharedObject Options
+if(optionsShared.data.ping_opt)ping_opt = optionsShared.data.ping_opt;
+if(optionsShared.data.ini_win_opt)ini_win_opt = optionsShared.data.ini_win_opt;
+if(optionsShared.data.notif_opt)notif_opt = optionsShared.data.notif_opt;
+if(optionsShared.data.item_opt)item_opt = optionsShared.data.item_opt;
+if(optionsShared.data.min_win_opt)min_win_opt = optionsShared.data.min_win_opt;
 
 //Declaraciones
 carga.x = stage.stageWidth /2;
@@ -220,7 +235,7 @@ function uiNuevo(tamaño:int, link:String, posX:int, posY:int, contenedor:MovieC
 		imagenItem.x = posX;
 		imagenItem.y = posY;
 		contenedorUI.buttonMode = true;
-		contenedorUI.addEventListener(MouseEvent.MOUSE_DOWN, itemInfo);
+		if(optionsShared.data.item_opt)contenedorUI.addEventListener(MouseEvent.MOUSE_DOWN, itemInfo);
 		contenedorUI.mouseChildren = false;
 		contenedorUI.addChild(imagenItem);
 		contenedor.addChild(contenedorUI);

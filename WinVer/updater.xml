@@ -1,6 +1,9 @@
 <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5">
-    <versionNumber>1.42.1</versionNumber>
+    <versionNumber>1.43</versionNumber>
     <url>https://github.com/goncy/AS3-LoLSkill-Game-LookUp/raw/master/WinVer/bin/LOLInfo.air</url>
-    <description>*Arreglos menores en las visualizaciones.
-    *Agregada rotacion semanal.</description>
+    <description>
+		*El chequeo de actualizaciones se hace ahora al abrir la aplicacion.
+		*La aplicacion puede iniciar con Windows.
+		*La aplicacion puede minimizarse a barra de tareas.
+	</description>
 </update>

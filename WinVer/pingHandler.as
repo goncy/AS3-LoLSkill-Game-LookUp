@@ -11,7 +11,7 @@ var time_start:Number;
 var time_stop:Number;
 var times:int;
 
-ping();
+if(optionsShared.data.ping_opt)ping();
 
 function ping():void
 {
@@ -42,4 +42,4 @@ pingTimer.addEventListener(TimerEvent.TIMER, timerListener);
 function timerListener (e:TimerEvent):void{
 ping();
 }
-pingTimer.start();
+if(optionsShared.data.ping_opt)pingTimer.start();
