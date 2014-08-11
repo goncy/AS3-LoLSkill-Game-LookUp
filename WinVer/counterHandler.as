@@ -34,6 +34,7 @@ function parseCountersWeak(texto:String):void
 		
 		uiNuevoCounter(50, "http://www.mobafire.com/images/champion/icon/"+arrayName[i].toLowerCase()+".png", 20, -15+30*i, itemContainer);
 		itemContainer.addEventListener(MouseEvent.CLICK, buscarCounter(itemContainer.champ));
+		itemContainer.addEventListener(MouseEvent.MOUSE_MOVE, toolTip("Buscar Counters y Builds recomendados"));
 	}
 }
 
@@ -66,6 +67,7 @@ function parseCountersStrong(texto:String):void
 		
 		uiNuevoCounter(50, "http://www.mobafire.com/images/champion/icon/"+arrayName[i].toLowerCase()+".png", 320, -15+30*i, itemContainer);
 		itemContainer.addEventListener(MouseEvent.CLICK, buscarCounter(itemContainer.champ));
+		itemContainer.addEventListener(MouseEvent.MOUSE_MOVE, toolTip("Buscar Counters y Builds recomendados"));
 	}
 }
 

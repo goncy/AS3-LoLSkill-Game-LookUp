@@ -1,0 +1,6 @@
+Instrucciones:
+
+1. Instalar AdobeAIRInstaller.exe
+2. Instalar LOLInfo
+
+Listo!

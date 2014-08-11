@@ -72,9 +72,11 @@ function firstToUpper(word):String {
 	word = word.replace("'","");
 	word = word.replace("’","");
 	word = word.replace(". ","");
+	word = word.replace(" ","");
 	word = word.replace("ChoGath","Chogath");
 	word = word.replace("KhaZix","Khazix");
 	word = word.replace("LeBlanc","Leblanc");
+	word = word.replace("Miss Fortune","MissFortune");
 //	var firstLetter:String = word.substring(1, 0);
 //	var restOfWord:String = word.substring(1);
 //	return (firstLetter.toUpperCase()+restOfWord.toLowerCase());

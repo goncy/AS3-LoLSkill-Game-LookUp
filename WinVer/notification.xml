@@ -2,10 +2,7 @@
 <PUSH>
 <ID>1</ID>
 <TITULO>Bienvenidos</TITULO>
-<CUERPO>Version 1.43 disponible. Changelog:
-*Agregadas opciones.
-*El chequeo de actualizaciones se hace ahora al abrir la aplicacion.
-*La aplicacion puede iniciar con Windows.
-*La aplicacion puede minimizarse a barra de tareas.</CUERPO>
+<CUERPO>Version 1.44 disponible. Changelog:
+*Arreglados algunos errores!</CUERPO>
 <LINK>https://www.facebook.com/LOLInfoGonzaloPozzo?fref=ts</LINK>
 </PUSH>

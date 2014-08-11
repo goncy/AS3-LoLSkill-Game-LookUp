@@ -18,7 +18,6 @@ import flash.display.NativeWindowDisplayState;
 
 //Stop
 stop();
-animarFrame();
 
 //Texto;
 var ubuntu = new Ubuntu();
@@ -58,6 +57,8 @@ var mapaBarra:Mapa = new Mapa();
 //Containers
 var containerCounter:containerCounterMc = new containerCounterMc();
 var containerBuild:buildContainer = new buildContainer();
+var tipContainer:MovieClip = new MovieClip();
+tipContainer.veces = 0;
 
 //SharedObject
 var suminfoShared:SharedObject = SharedObject.getLocal("summoner");
@@ -73,6 +74,7 @@ if(optionsShared.data.ini_win_opt)ini_win_opt = optionsShared.data.ini_win_opt;
 if(optionsShared.data.notif_opt)notif_opt = optionsShared.data.notif_opt;
 if(optionsShared.data.item_opt)item_opt = optionsShared.data.item_opt;
 if(optionsShared.data.min_win_opt)min_win_opt = optionsShared.data.min_win_opt;
+if(optionsShared.data.tips_opt)tips_opt = optionsShared.data.tips_opt;
 
 //Declaraciones
 carga.x = stage.stageWidth /2;
@@ -95,8 +97,10 @@ notifBtn.buttonMode = true;
 notifBtn.addEventListener(MouseEvent.CLICK, notifframe);
 busqueda.addEventListener(MouseEvent.CLICK, busquedaframe);
 buildsBtn.addEventListener(MouseEvent.CLICK, buildsframe);
-notifBtn.addEventListener(MouseEvent.MOUSE_OVER, brightOn);
+notifBtn.addEventListener(MouseEvent.MOUSE_MOVE, brightOn);
 notifBtn.addEventListener(MouseEvent.MOUSE_OUT, brightOff);
+busqueda.addEventListener(MouseEvent.MOUSE_MOVE, toolTip("Busqueda de partidas e informacion de invocador"));
+buildsBtn.addEventListener(MouseEvent.MOUSE_MOVE, toolTip("Busqueda de builds y Counters"));
 
 addEventListener("Notif", hayNotif);
 
@@ -110,6 +114,7 @@ function notifframe(MouseEvent):void
 	checkInStage(containerCounter);
 	checkInStage(containerBuild);
 	checkInStage(containersum);
+	vaciarClip(tipContainer);
 	this.gotoAndStop(2);
 }
 
@@ -121,6 +126,7 @@ function buildsframe(MouseEvent):void
 	checkInStage(errorConexion);
 	checkInStage(container_mc);
 	checkInStage(containersum);
+	vaciarClip(tipContainer);
 	this.gotoAndStop(3);
 }
 
@@ -133,18 +139,20 @@ function busquedaframe(MouseEvent):void
 	checkInStage(errorConexion);
 	checkInStage(errorGame);
 	checkInStage(containersum);
+	vaciarClip(tipContainer);
 	this.gotoAndStop(1);
 }
 
 //Funcion brillo boton
-function brightOn(MouseEvent):void
+function brightOn(e:MouseEvent):void
 {
 	var color:Color = new Color();
 	color.brightness = 0.3;         
 	notifBtn.transform.colorTransform = color;
+	if(optionsShared.data.tips_opt)placaToolTip("Notificaciones de la aplicación", e.target);
 }
 
-function brightOff(MouseEvent):void
+function brightOff(e:MouseEvent):void
 {
 	var color:Color = new Color();
 	color.brightness = 0;         
@@ -221,6 +229,7 @@ function textoNuevo(texto:String, posX:int, posY:int, contenedor:MovieClip, form
 	tfield.x = posX;
 	tfield.y = posY;
 	tfield.filters = [new DropShadowFilter(1)];
+	tfield.embedFonts = true;
 	contenedor.addChild(tfield);
 }
 
@@ -235,7 +244,7 @@ function uiNuevo(tamaño:int, link:String, posX:int, posY:int, contenedor:MovieC
 		imagenItem.x = posX;
 		imagenItem.y = posY;
 		contenedorUI.buttonMode = true;
-		if(optionsShared.data.item_opt)contenedorUI.addEventListener(MouseEvent.MOUSE_DOWN, itemInfo);
+		if(optionsShared.data.item_opt)contenedorUI.addEventListener(MouseEvent.MOUSE_OVER, itemInfo);
 		contenedorUI.mouseChildren = false;
 		contenedorUI.addChild(imagenItem);
 		contenedor.addChild(contenedorUI);
@@ -275,4 +284,94 @@ function getFilter(objeto:String):GlowFilter
 	break;
 	}
 	return glow;
+}
+
+function placaItem(texto:String, target:Object):void
+{
+	vaciarClip(tipContainer);
+	addChild(tipContainer);
+	target.addEventListener(MouseEvent.ROLL_OUT, eliminarPlaca);
+	var contenedorPlaca:MovieClip = new MovieClip();
+	contenedorPlaca.x = stage.mouseX;
+	contenedorPlaca.y = stage.mouseY+5;
+	contenedorPlaca.filters = [new DropShadowFilter(1)];
+	contenedorPlaca.addEventListener(MouseEvent.MOUSE_OVER, eliminarPlaca);
+	
+	var tfield:TextField = new TextField();
+	tfield.defaultTextFormat = formatoItem;
+	tfield.selectable = false;
+	tfield.multiline = true;
+	tfield.wordWrap = true;
+	tfield.autoSize = TextFieldAutoSize.LEFT;
+	tfield.width = 250;
+	tfield.height = 210;
+	tfield.x = 10;
+	tfield.y = 10;
+	tfield.antiAliasType = AntiAliasType.ADVANCED;
+	tfield.sharpness = 1;
+    tfield.thickness = 100;
+	tfield.htmlText = texto;
+	tfield.embedFonts = true;
+	tfield.filters = [new DropShadowFilter(1),new BevelFilter(1)];
+
+	var rectangle:Shape = new Shape; // initializing the variable named rectangle
+	rectangle.graphics.beginFill(0x666666, 0.9); // choosing the colour for the fill, here it is red
+	rectangle.graphics.drawRect(0, 0, tfield.width+20,tfield.height+40); // (x spacing, y spacing, width, height)
+	rectangle.graphics.endFill(); // not always needed but I like to put it in to end the fill
+	contenedorPlaca.addChild(rectangle); // adds the rectangle to the stage
+	contenedorPlaca.addChild(tfield);
+	if(stage.mouseX+contenedorPlaca.width > stage.width)contenedorPlaca.x=contenedorPlaca.x-contenedorPlaca.width;
+	tipContainer.addChild(contenedorPlaca);
+	if(stage.mouseY>300||stage.mouseY<135||stage.mouseX<360||stage.mouseX>630)tipContainer.removeChild(contenedorPlaca);tipContainer.veces = 0;
+}
+
+function placaToolTip(texto:String, target:Object):void
+{
+	vaciarClip(tipContainer);
+	addChild(tipContainer);
+	
+	target.addEventListener(MouseEvent.ROLL_OUT, eliminarPlaca);
+	var contenedorPlaca:MovieClip = new MovieClip();
+	contenedorPlaca.x = stage.mouseX;
+	contenedorPlaca.y = stage.mouseY+5;
+	contenedorPlaca.filters = [new DropShadowFilter(1)];
+	
+	var tfield:TextField = new TextField();
+	tfield.defaultTextFormat = formatoItem;
+	tfield.selectable = false;
+	tfield.multiline = true;
+	tfield.wordWrap = true;
+	tfield.autoSize = TextFieldAutoSize.LEFT;
+	tfield.width = 200;
+	tfield.height = 210;
+	tfield.embedFonts = true;
+	tfield.x = 10;
+	tfield.y = 10;
+	tfield.antiAliasType = AntiAliasType.ADVANCED;
+	tfield.sharpness = 1;
+    tfield.thickness = 100;
+	tfield.htmlText = texto;
+	tfield.filters = [new DropShadowFilter(1),new BevelFilter(1)];
+
+	var rectangle:Shape = new Shape; // initializing the variable named rectangle
+	rectangle.graphics.beginFill(0x666666, 0.9); // choosing the colour for the fill, here it is red
+	rectangle.graphics.drawRect(0, 0, tfield.width+20,tfield.height+20); // (x spacing, y spacing, width, height)
+	rectangle.graphics.endFill(); // not always needed but I like to put it in to end the fill
+	contenedorPlaca.addChild(rectangle); // adds the rectangle to the stage
+	contenedorPlaca.addChild(tfield);
+	if(stage.mouseX+contenedorPlaca.width > stage.width)contenedorPlaca.x=contenedorPlaca.x-contenedorPlaca.width;
+	tipContainer.addChild(contenedorPlaca);
+}
+
+function eliminarPlaca(e:MouseEvent):void
+{
+	vaciarClip(tipContainer);
+	tipContainer.veces = 0;
+}
+
+function toolTip(texto:String):Function {
+    return function(e:MouseEvent):void
+	{
+		if(optionsShared.data.tips_opt)placaToolTip(texto, e.target);
+	}
 }

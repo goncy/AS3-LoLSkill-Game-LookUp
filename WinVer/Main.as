@@ -43,8 +43,9 @@
 		public var ping_opt:Boolean = true;
 		public var ini_win_opt:Boolean = true;
 		public var notif_opt:Boolean = true;
-		public var item_opt:Boolean = false;
+		public var item_opt:Boolean = true;
 		public var min_win_opt:Boolean = true;
+		public var tips_opt:Boolean = true;
 		
 		//Strings
 		var tituloNot:String = "Bienvenidos";
@@ -53,7 +54,6 @@
 		
 		//Actualizacion
 		public var appUpdater:ApplicationUpdaterUI = new ApplicationUpdaterUI;
-		public var launchUpdate:Timer = new Timer(2000,1);
 				
 		//Mapa
 		public var MapString:String;
@@ -61,7 +61,7 @@
 		//Variables Arrays
 		public var arrayNombre:Array = new Array();
 		public var arrayColor:Array = new Array();
-		public var suma:Array = [0,0];
+		public var suma:Array = [50,50];
 		public var arraySkill:Array = new Array();
 		public var arrayChamp:Array = new Array();
 		public var arrayDiv:Array = new Array();
@@ -101,10 +101,8 @@
 			TweenPlugin.activate([AutoAlphaPlugin]); //activation is permanent in the SWF, so this line only needs to be run once.
 			if(optionsShared.data.notif_opt)notLoader.load(new URLRequest("https://raw.githubusercontent.com/goncy/AS3-LoLSkill-Game-LookUp/master/WinVer/notification.xml"));
 			configUpdater();
-			launchUpdate.start();
-			
 			notLoader.addEventListener(Event.COMPLETE, processXML);
-			launchUpdate.addEventListener(TimerEvent.TIMER, goUpdate);
+			include "pingHandler.as";
 		}
 
 		function configUpdater():void
@@ -120,15 +118,19 @@
 			appUpdater.isFileUpdateVisible = true;
 			appUpdater.isUnexpectedErrorVisible = true;
 		}
+		
+		function parseSecond(texto:String):void
+		{
+			arrayPm = texto.split(parserPm);
+			arrayChamp = texto.split(parserChamp);
+		}
 
 		function parseAll(texto:String):void
 		{
 			arrayColor = texto.split(parserColor);
-			arrayChamp = texto.split(parserChamp);
 			arrayNombre = texto.split(parserNombre);
 			arrayDiv = texto.split(parserDiv);
 			arrayWins = texto.split(parserWins);
-			arrayPm = texto.split(parserPm);
 			arrayPerc = parseSkill(texto);
 			arrayMap = texto.split(parserMap);
 			//Parse Stats
@@ -150,14 +152,26 @@
 		function parseSkill(texto:String):Array
 		{
 			arraySkill = texto.split(parserSkill);
-			for (var i:int=0; i<5; i++)
-			{
-				var sumaA:String = arraySkill[i * 2 + 1];
-				var sumaB:String = arraySkill[i * 2 + 11];
-				sumaA = sumaA.replace(",","");
-				sumaB = sumaB.replace(",","");
-				suma[0] = suma[0] + parseInt(sumaA);
-				suma[1] = suma[1] + parseInt(sumaB);
+			if(arraySkill.length==21){
+				for (var i:int=0; i<5; i++)
+				{
+					var sumaA:String = arraySkill[i * 2 + 1];
+					var sumaB:String = arraySkill[i * 2 + 11];
+					sumaA = sumaA.replace(",","");
+					sumaB = sumaB.replace(",","");
+					suma[0] = suma[0] + parseInt(sumaA);
+					suma[1] = suma[1] + parseInt(sumaB);
+				}
+			}if(arraySkill.length==13){
+				for (var k:int=0; k<3; k++)
+				{
+					var sumaATT:String = arraySkill[k * 2 + 1];
+					var sumaBTT:String = arraySkill[k * 2 + 7];
+					sumaATT = sumaATT.replace(",","");
+					sumaBTT = sumaBTT.replace(",","");
+					suma[0] = suma[0] + parseInt(sumaATT);
+					suma[1] = suma[1] + parseInt(sumaBTT);
+				}
 			}
 			return suma;
 		}
@@ -171,7 +185,9 @@
 		}
 		
 		function animarFrame(){
-			var animacion:Tween = new Tween(this,"alpha",Regular.easeOut,0,1,1,true);
+			MovieClip(this).alpha = 0;
+			TweenLite.to(MovieClip(this), 0.3, {autoAlpha:1});
+			//var animacion:Tween = new Tween(this,"alpha",Regular.easeOut,0,1,1,true);
 		}
 		
 		function animar(elemento:MovieClip):void
@@ -195,9 +211,11 @@
 		function vaciarClip(clip:MovieClip):void
 		{
 			//Handler Counter
-			while (clip.numChildren > 0)
-			{
-			clip.removeChildAt(0);
+			if(clip){
+				while (clip.numChildren > 0)
+				{
+					clip.removeChildAt(0);
+				}
 			}
 		}
 		
@@ -209,10 +227,6 @@
 		function onError(event:ErrorEvent):void
 		{
 			trace(event);
-		}
-		
-		function goUpdate(e:TimerEvent):void{
-			appUpdater.initialize();
 		}
 	}
 }

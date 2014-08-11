@@ -88,65 +88,30 @@ function parseBuildName(arrayNameBuild:Array):void
 
 function itemInfo(e:MouseEvent):void
 {
-    var urlRequest:URLRequest  = new URLRequest("https://las.api.pvp.net/api/lol/static-data/las/v1.2/item/"+e.target.idItem+"?locale=es_ES&itemData=all&api_key=79cec077-7792-4ac8-90cc-a43d5cff69a6");
-
-    var urlLoader:URLLoader = new URLLoader();
-    urlLoader.addEventListener(Event.COMPLETE, completeHandler);
-
-    try{
-        urlLoader.load(urlRequest);
-    } catch (error:Error) {
-        trace("Cannot load : " + error.message);
-    }
-}
-
-function completeHandler(event:Event):void {
-    var loader:URLLoader = URLLoader(event.target);
-
-    var data:Object = JSON.parse(loader.data);
-    trace("The answer is " + data.name+" ; "+data.description);
-    //All fields from JSON are accessible by theit property names here/
-	placaItem(data.name+"\n"+data.description);
-}
-
-function placaItem(texto:String):void
-{
-	var contenedorPlaca:MovieClip = new MovieClip();
-	contenedorPlaca.x = stage.mouseX-10;
-	contenedorPlaca.y = stage.mouseY-10;
-	contenedorPlaca.filters = [new DropShadowFilter(1)];
+    if(tipContainer.veces==0){
+		var urlRequest:URLRequest  = new URLRequest("https://las.api.pvp.net/api/lol/static-data/las/v1.2/item/"+e.target.idItem+"?locale=es_ES&itemData=all&api_key=79cec077-7792-4ac8-90cc-a43d5cff69a6");
+		tipContainer.veces = 1;
+		var urlLoader:URLLoader = new URLLoader();
+		urlLoader.addEventListener(Event.COMPLETE, completeHandler(e.target));
 	
-	var tfield:TextField = new TextField();
-	tfield.defaultTextFormat = formatoItem;
-	tfield.selectable = false;
-	tfield.multiline = true;
-	tfield.wordWrap = true;
-	tfield.autoSize = TextFieldAutoSize.LEFT;
-	tfield.width = 250;
-	tfield.height = 210;
-	tfield.x = 10;
-	tfield.y = 10;
-	tfield.antiAliasType = AntiAliasType.ADVANCED;
-	tfield.sharpness = 1;
-    tfield.thickness = 100;
-	tfield.htmlText = texto;
-	tfield.filters = [new DropShadowFilter(1),new BevelFilter(1)];
-
-	var rectangle:Shape = new Shape; // initializing the variable named rectangle
-	rectangle.graphics.beginFill(0x666666, 0.9); // choosing the colour for the fill, here it is red
-	rectangle.graphics.drawRect(0, 0, tfield.width+20,tfield.height+40); // (x spacing, y spacing, width, height)
-	rectangle.graphics.endFill(); // not always needed but I like to put it in to end the fill
-	contenedorPlaca.addChild(rectangle); // adds the rectangle to the stage
-	contenedorPlaca.addChild(tfield);
-	if(stage.mouseX+contenedorPlaca.width > stage.width)contenedorPlaca.x=contenedorPlaca.x-contenedorPlaca.width+20;
-	contenedorPlaca.addEventListener(MouseEvent.ROLL_OUT, eliminarPlaca);
-	animar(contenedorPlaca);
-	addChild(contenedorPlaca);
-	if(contenedorPlaca.y>330)removeChild(contenedorPlaca);
+		try{
+			urlLoader.load(urlRequest);
+		} catch (error:Error) {
+			trace("Cannot load : " + error.message);
+		}
+	}
 }
 
-function eliminarPlaca(e:MouseEvent):void
-{
-	trace(e.target.name);
-	e.target.parent.removeChild(e.target);
+function completeHandler(target:Object):Function {
+    return function(event:Event):void
+	{
+		var loader:URLLoader = URLLoader(event.target);
+	
+		var data:Object = JSON.parse(loader.data);
+		trace("The answer is " + data.name+" ; "+data.description);
+		//All fields from JSON are accessible by theit property names here/
+		tipContainer.tip = "";
+		tipContainer.tip = data.name+"\n"+data.description;
+		placaItem(tipContainer.tip, target);
+	}
 }

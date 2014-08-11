@@ -72,6 +72,8 @@ function agregar(event:Event):void
 	habMenu();
 	
 	//Agregar
+	//Parsear secundario
+	parseSecond(textoCargado);
 	try {
 		//Parse URL
 		parseAll(textoCargado);
@@ -113,6 +115,10 @@ function populate():void
 		plaza.smasob.addEventListener(MouseEvent.ROLL_OVER, handleMasteriesIn);
 		plaza.smasob.addEventListener(MouseEvent.ROLL_OUT, handleMasteriesOut);
 		plaza.bs.addEventListener(MouseEvent.CLICK, bssumoner);
+		plaza.bs.addEventListener(MouseEvent.MOUSE_MOVE, toolTip("Buscar infromacion del invocador"));
+		var parserChampName:RegExp = new RegExp('.*?img/skins/175/x(.*?)_.*?',"s");
+		var champName:String = arrayChamp[i].split(parserChampName)[1];
+		plaza.smaso.addEventListener(MouseEvent.MOUSE_MOVE, toolTip(upperCase(champName)));
 
 		if(i < arrayChamp.length/2)
 		{
@@ -149,4 +155,12 @@ function pressEnter(evt:KeyboardEvent):void
 	{
 	   animarBoton(MouseEvent.CLICK);
 	}
+}
+
+//First to capital
+function upperCase(str:String) : String {
+ var firstChar:String = str.substr(0, 1); 
+ var restOfString:String = str.substr(1, str.length); 
+    
+ return firstChar.toUpperCase()+restOfString.toLowerCase(); 
 }
