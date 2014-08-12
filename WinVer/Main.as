@@ -102,6 +102,7 @@
 			if(optionsShared.data.notif_opt)notLoader.load(new URLRequest("https://raw.githubusercontent.com/goncy/AS3-LoLSkill-Game-LookUp/master/WinVer/notification.xml"));
 			configUpdater();
 			notLoader.addEventListener(Event.COMPLETE, processXML);
+			stage.nativeWindow.addEventListener(Event.CLOSING, closeApplication, false, 0, true); 
 			include "pingHandler.as";
 		}
 
@@ -228,5 +229,11 @@
 		{
 			trace(event);
 		}
+		
+		function closeApplication(e:Event):void  
+		{
+			e.preventDefault();
+			NativeApplication.nativeApplication.exit();  
+		}  
 	}
 }
