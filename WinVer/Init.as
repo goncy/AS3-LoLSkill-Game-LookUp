@@ -21,6 +21,7 @@ stop();
 
 //Texto;
 var ubuntu = new Ubuntu();
+var helve = new Helve();
 
 //Cargas
 var cargas:int = 0;
@@ -46,7 +47,7 @@ formatoChico.align = TextFormatAlign.LEFT;
 var formatoItem:TextFormat = new TextFormat();
 formatoItem.size = 14;
 formatoItem.color = 0xFFFFFF;
-formatoItem.font = ubuntu.fontName;
+formatoItem.font = helve.fontName;
 
 //Mensajes
 var carga:Cargador = new Cargador();

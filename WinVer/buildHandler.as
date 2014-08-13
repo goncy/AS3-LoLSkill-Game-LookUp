@@ -82,7 +82,7 @@ function parseBuildName(arrayNameBuild:Array):void
 {
 	for (var i:int = 1; i < arrayNameBuild.length; i+=2)
 	{
-		textoNuevo(arrayNameBuild[i], -123, 20*i, containerBuild.champBuild, formatoChico, 140);
+		textoNuevo(arrayNameBuild[i], -123, (20*i)+5, containerBuild.champBuild, formatoChico, 140);
 	}
 }
 

@@ -1,11 +1,13 @@
-﻿var trayIcon:BitmapData;
+﻿import flash.events.InvokeEvent;
+import flash.desktop.InvokeEventReason;
 
-initApp();
+var trayIcon:BitmapData;
 
-function initApp():void{
+function initTray():void{
+	if(!(optionsShared.data.min_win_opt))stage.nativeWindow.visible = true;
 	if(optionsShared.data.min_win_opt)loadTrayIcon();
-	if(optionsShared.data.ini_win_opt)NativeApplication.nativeApplication.startAtLogin = true; 
-	this.addEventListener(Event.CLOSING, minToTray);
+	if(optionsShared.data.ini_win_opt)NativeApplication.nativeApplication.startAtLogin = true;
+	if(optionsShared.data.min_win_opt)stage.nativeWindow.addEventListener(Event.CLOSING, minToTray, false, 0, true); 
 }
 
 function loadTrayIcon():void{
@@ -41,7 +43,20 @@ function readyToTray(event:Event):void{
 
 		stage.nativeWindow.addEventListener(NativeWindowDisplayStateEvent.DISPLAY_STATE_CHANGING, winMinimized);
 		SystemTrayIcon(NativeApplication.nativeApplication.icon).menu = myMenu;
+		NativeApplication.nativeApplication.addEventListener( InvokeEvent.INVOKE, onInvoke );
 	}
+}
+
+function onInvoke( event:InvokeEvent ):void 
+{ 
+	if( event.reason == InvokeEventReason.LOGIN ) 
+	{ 
+		dock(); 
+	}             
+	else 
+	{ 
+		this.stage.nativeWindow.activate(); 
+	} 
 }
 
 function winMinimized(displayStateEvent:NativeWindowDisplayStateEvent):void{
