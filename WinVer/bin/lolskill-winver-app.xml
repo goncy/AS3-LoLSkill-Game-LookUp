@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<application xmlns="http://ns.adobe.com/air/application/3.2">
+<application xmlns="http://ns.adobe.com/air/application/13.0">
   <id>LOLInfo</id>
-  <versionNumber>1.44.1</versionNumber>
+  <versionNumber>1.44.2</versionNumber>
   <filename>LOLInfo</filename>
   <description/>
-<!-- To localize the description, use the following format for the description element.<description><text xml:lang="en">English App description goes here</text><text xml:lang="fr">French App description goes here</text><text xml:lang="ja">Japanese App description goes here</text></description>-->
+
+  
+
+  
+
+  
+
+  <!-- To localize the description, use the following format for the description element.<description><text xml:lang="en">English App description goes here</text><text xml:lang="fr">French App description goes here</text><text xml:lang="ja">Japanese App description goes here</text></description>-->
   <name>LOLInfo</name>
-<!-- To localize the name, use the following format for the name element.<name><text xml:lang="en">English App name goes here</text><text xml:lang="fr">French App name goes here</text><text xml:lang="ja">Japanese App name goes here</text></name>-->
+
+  
+
+  
+
+  
+
+  <!-- To localize the name, use the following format for the name element.<name><text xml:lang="en">English App name goes here</text><text xml:lang="fr">French App name goes here</text><text xml:lang="ja">Japanese App name goes here</text></name>-->
   <copyright>Gonzalo Pozzo</copyright>
   <initialWindow>
     <content>lolskill-winver.swf</content>
@@ -25,10 +39,10 @@
     <maxSize>800 720</maxSize>
   </initialWindow>
   <icon>
-    <image16x16>AppIconsForPublish/16.png</image16x16>
-    <image32x32>AppIconsForPublish/32.png</image32x32>
-    <image48x48>AppIconsForPublish/48.png</image48x48>
-    <image128x128>AppIconsForPublish/128.png</image128x128>
+    
+    
+    
+    
   </icon>
   <customUpdateUI>false</customUpdateUI>
   <allowBrowserInvocation>false</allowBrowserInvocation>
