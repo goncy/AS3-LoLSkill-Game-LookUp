@@ -1,8 +1,8 @@
 <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5">
-    <versionNumber>1.44.2</versionNumber>
+    <versionNumber>1.44.3</versionNumber>
     <url>https://github.com/goncy/AS3-LoLSkill-Game-LookUp/raw/master/WinVer/bin/LOLInfo.air</url>
     <description>
 		Cambios:
-		*Agregado Gnar a la busqueda de campeones!
+		*Arreglados iconos!
 	</description>
 </update>
