@@ -1,8 +1,8 @@
 <update xmlns="http://ns.adobe.com/air/framework/update/description/2.5">
-    <versionNumber>1.44.3</versionNumber>
+    <versionNumber>1.44.4</versionNumber>
     <url>https://github.com/goncy/AS3-LoLSkill-Game-LookUp/raw/master/WinVer/bin/LOLInfo.air</url>
     <description>
 		Cambios:
-		*Arreglados iconos!
+		*Arreglados error por cual los porcentajes aparecian invertidos!
 	</description>
 </update>
