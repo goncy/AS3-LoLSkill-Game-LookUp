@@ -133,6 +133,7 @@ function populate():void
 	//Mapa
 	mapaBarra.game_map.htmlText = MapString;
 	//Porcentajes
+	coloresPerc();
 	mapaBarra.t1per.text = String(Math.round((arrayPerc[0]/(arrayPerc[0]+arrayPerc[1]))*10000)/100)+"%";
 	mapaBarra.t2per.text = String(Math.round((arrayPerc[1]/(arrayPerc[0]+arrayPerc[1]))*10000)/100)+"%";
 	container_mc.addChild(mapaBarra);
@@ -140,6 +141,18 @@ function populate():void
 
 
 //Extras
+function coloresPerc():void
+{
+	if(ultimoColor == "purple")
+	{
+		mapaBarra.t2per.textColor = 0x9900CC;
+		mapaBarra.t1per.textColor = 0x3399FF;
+	}if(ultimoColor == "blue"){
+		mapaBarra.t1per.textColor = 0x9900CC;
+		mapaBarra.t2per.textColor = 0x3399FF;
+	}
+}
+
 function glowin(FocusEvent):void
 {
 	//Glow in effect

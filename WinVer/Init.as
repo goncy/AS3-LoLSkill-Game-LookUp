@@ -274,6 +274,7 @@ function getFilter(objeto:String):GlowFilter
 	
 	case "blueteam":
 	glow.color = (0x2045A6);
+	ultimoColor = "blue";
 	break;
 	
 	case "self":
@@ -282,8 +283,10 @@ function getFilter(objeto:String):GlowFilter
 	
 	case "purpleteam":
 	glow.color = (0x641A95);
+	ultimoColor = "purple";
 	break;
 	}
+	
 	return glow;
 }
 

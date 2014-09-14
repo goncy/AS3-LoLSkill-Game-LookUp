@@ -51,6 +51,7 @@
 		var tituloNot:String = "Bienvenidos";
 		var cuerpoNot:String = "No hay nuevas notificaciones";
 		var linkNot:String = "";
+		var ultimoColor:String;
 		
 		//Actualizacion
 		public var appUpdater:ApplicationUpdaterUI = new ApplicationUpdaterUI;
