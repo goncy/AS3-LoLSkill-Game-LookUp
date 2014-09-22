@@ -60,6 +60,7 @@
 		public var MapString:String;
 		
 		//Variables Arrays
+		public var arrayChampsFull:Array = new Array();
 		public var arrayNombre:Array = new Array();
 		public var arrayColor:Array = new Array();
 		public var suma:Array = [50,50];
@@ -104,6 +105,7 @@
 			if(optionsShared.data.notif_opt)notLoader.load(new URLRequest("https://raw.githubusercontent.com/goncy/AS3-LoLSkill-Game-LookUp/master/WinVer/notification.xml"));
 			configUpdater();
 			notLoader.addEventListener(Event.COMPLETE, processXML);
+			getChampArray();
 			include "pingHandler.as";
 		}
 
@@ -229,6 +231,26 @@
 		function onError(event:ErrorEvent):void
 		{
 			trace(event);
+		}
+		
+		function getChampArray():void
+		{
+			var urlRequestChamp:URLRequest  = new URLRequest("https://las.api.pvp.net/api/lol/static-data/las/v1.2/champion?api_key=79cec077-7792-4ac8-90cc-a43d5cff69a6");
+			var urlLoaderChamp:URLLoader = new URLLoader();
+
+			urlLoaderChamp.addEventListener(Event.COMPLETE, completeLoaderHandlerChamp);
+			urlLoaderChamp.load(urlRequestChamp);
+
+			function completeLoaderHandlerChamp(event:Event):void {
+				var loader:URLLoader = URLLoader(event.target);
+				var datas:Object = JSON.parse(loader.data);
+				for (var champ:String in datas.data)
+				{
+					if(champ=="MonkeyKing")champ="Wukong";
+					arrayChampsFull.push(champ);
+				} 
+				arrayChampsFull.sort();
+			}
 		}
 	}
 }

@@ -51,7 +51,8 @@ function divideBuild(e:Event):void
 	arrayChampStat = e.target.data.split(parserChampStat);
 	
 	//Image
-	containerBuild.champImg.source = "http://www.mobafire.com/images/champion/icon/" + champ.toLowerCase() + ".png";
+	if(champ=="Wukong")containerBuild.champImg.source = "http://ddragon.leagueoflegends.com/cdn/4.15.1/img/champion/MonkeyKing.png";
+	else containerBuild.champImg.source = "http://ddragon.leagueoflegends.com/cdn/4.15.1/img/champion/"+champ+".png";
 	//Name
 	containerBuild.champName.text = arrayChampStat[1];
 
