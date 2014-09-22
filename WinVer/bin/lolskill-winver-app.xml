@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <application xmlns="http://ns.adobe.com/air/application/13.0">
   <id>LOLInfo</id>
-  <versionNumber>1.44.5</versionNumber>
+  <versionNumber>1.44.6</versionNumber>
   <filename>LOLInfo</filename>
   <description/>
 
@@ -38,7 +38,16 @@
   
 
   
-<!-- To localize the description, use the following format for the description element.<description><text xml:lang="en">English App description goes here</text><text xml:lang="fr">French App description goes here</text><text xml:lang="ja">Japanese App description goes here</text></description>-->
+
+  
+
+  
+
+  
+
+  
+
+  <!-- To localize the description, use the following format for the description element.<description><text xml:lang="en">English App description goes here</text><text xml:lang="fr">French App description goes here</text><text xml:lang="ja">Japanese App description goes here</text></description>-->
   <name>LOLInfo</name>
 
   
@@ -74,7 +83,16 @@
   
 
   
-<!-- To localize the name, use the following format for the name element.<name><text xml:lang="en">English App name goes here</text><text xml:lang="fr">French App name goes here</text><text xml:lang="ja">Japanese App name goes here</text></name>-->
+
+  
+
+  
+
+  
+
+  
+
+  <!-- To localize the name, use the following format for the name element.<name><text xml:lang="en">English App name goes here</text><text xml:lang="fr">French App name goes here</text><text xml:lang="ja">Japanese App name goes here</text></name>-->
   <copyright>Gonzalo Pozzo</copyright>
   <initialWindow>
     <content>lolskill-winver.swf</content>
